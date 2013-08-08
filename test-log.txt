@@ -1,0 +1,27 @@
+Test Case  - http://localhost:3000/test/js/Base.html
+
+[0m[0m
+[0m  Base[0m
+[0m    Extend[0m
+    [90m  ◦ inherit functionality : [0m
+[A[2K    [31m  1) inherit functionality [0m
+
+
+[91m  ✖[0m[31m 1 of 1 test failed[0m[90m:[0m
+
+[0m  1) Base Extend inherit functionality :
+[0m[31m     expected { Object () } to have own property 'fn1'[0m[90m
+      at http://localhost:3000/test/testvendor/chai.js:401
+      at assertOwnProperty (http://localhost:3000/test/testvendor/chai.js:1288)
+      at http://localhost:3000/test/testvendor/chai.js:3048
+      at http://localhost:3000/test/js/Base.spec.js:12
+      at http://localhost:3000/test/testvendor/mocha.js:3658
+      at http://localhost:3000/test/testvendor/mocha.js:3977
+      at http://localhost:3000/test/testvendor/mocha.js:4036
+      at next (http://localhost:3000/test/testvendor/mocha.js:3905)
+      at http://localhost:3000/test/testvendor/mocha.js:3914
+      at next (http://localhost:3000/test/testvendor/mocha.js:3862)
+      at http://localhost:3000/test/testvendor/mocha.js:3882
+      at http://localhost:3000/test/testvendor/mocha.js:4826
+[0m
+
