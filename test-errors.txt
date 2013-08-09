@@ -1,25 +1,25 @@
-Test Case  - http://localhost:3000/test/js/Base.html
-
-[0m[0m
-[0m  Base[0m
-[0m    Extend[0m
-    [90m  ◦ inherit functionality : [0m
-[A[2K{"$":{}}
-    [31m  1) inherit functionality [0m
-
-
-[91m  ✖[0m[31m 1 of 1 test failed[0m[90m:[0m
-
-[0m  1) Base Extend inherit functionality :
-[0m[31m     TypeError: 'undefined' is not an object (evaluating 'expect(Obj.prototype).has.ownProperty')[0m[90m
-      at http://localhost:3000/test/js/Base.spec.js:12
-      at http://localhost:3000/test/testvendor/mocha.js:3658
-      at http://localhost:3000/test/testvendor/mocha.js:3977
-      at http://localhost:3000/test/testvendor/mocha.js:4036
-      at next (http://localhost:3000/test/testvendor/mocha.js:3905)
-      at http://localhost:3000/test/testvendor/mocha.js:3914
-      at next (http://localhost:3000/test/testvendor/mocha.js:3862)
-      at http://localhost:3000/test/testvendor/mocha.js:3882
-      at http://localhost:3000/test/testvendor/mocha.js:4826
-[0m
-
+Test Case  - http://localhost:3000/test/js/Gameloop.html
+PHANTOM ERROR: TypeError: 'undefined' is not an object (evaluating 'this.prototype')
+TRACE:
+at http://localhost:3000/js/smashball/Base.js: 34 (in function "mixin")
+at http://localhost:3000/js/smashball/Base.js: 34 (in function "mixin")
+at http://localhost:3000/js/smashball/Gameloop.js: 31
+at http://localhost:3000/test/testvendor/require.js: 1588
+at http://localhost:3000/test/testvendor/require.js: 841
+at http://localhost:3000/test/testvendor/require.js: 1074
+at http://localhost:3000/test/testvendor/require.js: 126
+at http://localhost:3000/test/testvendor/require.js: 1117
+at http://localhost:3000/test/testvendor/require.js: 58 (in function "each")
+at http://localhost:3000/test/testvendor/require.js: 1118
+at http://localhost:3000/test/testvendor/require.js: 895
+at http://localhost:3000/test/testvendor/require.js: 1074
+at http://localhost:3000/test/testvendor/require.js: 126
+at http://localhost:3000/test/testvendor/require.js: 1117
+at http://localhost:3000/test/testvendor/require.js: 58 (in function "each")
+at http://localhost:3000/test/testvendor/require.js: 1118
+at http://localhost:3000/test/testvendor/require.js: 895
+at http://localhost:3000/test/testvendor/require.js: 1104
+at http://localhost:3000/test/testvendor/require.js: 754
+at http://localhost:3000/test/testvendor/require.js: 1129 (in function "callGetModule")
+at http://localhost:3000/test/testvendor/require.js: 1479
+at http://localhost:3000/test/testvendor/require.js: 1611

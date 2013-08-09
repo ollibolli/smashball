@@ -31,6 +31,7 @@
 
 
     Function.prototype.Include = function mixin (object, allowOverride) {
+        console.log(this.prototype);
         mixin(this.prototype, object, allowOverride);
     };
 
@@ -86,7 +87,6 @@
     function mixin(target,object,allowOverride){
         for (var property in object) {
             if (object.hasOwnProperty(property)) {
-                console.log(property);
                 if (allowOverride || ! target[property]) {
                     target[property] = object[property];
                 } else throw new Error('mixin : Property '+ property + ' already  defined not alowed to be overrided');
