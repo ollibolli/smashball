@@ -1,1 +1,4 @@
-.idea
+.idea/
+test-errors
+test-log
+node_modules/
