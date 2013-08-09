@@ -24,7 +24,7 @@
     Function.prototype.Extend = function(parent, methods){
 
         extend (parent,this);
-        if (typeof methods === 'object') {
+        if (methods) {
             mixin(this.prototype,methods, true);
         }
     }
@@ -84,20 +84,11 @@
 	}
 
     function mixin(target,object,allowOverride){
-        if (object === undefined) throw new TypeError('parameter undefined' );
-        //TODO check object
         for (var property in object) {
             if (object.hasOwnProperty(property)) {
+                console.log(property);
                 if (allowOverride || ! target[property]) {
-                    if (typeof object[property] === 'function'){
-                        (function(property) {
-                            target[property] = function() {
-                                return object[property].apply(this, arguments);
-                            };
-                        }(property));
-                    }else{
-                        target[property] = object[property];
-                    }
+                    target[property] = object[property];
                 } else throw new Error('mixin : Property '+ property + ' already  defined not alowed to be overrided');
             }
         };
@@ -113,8 +104,6 @@
 define(function(){
 
     function Base(){};
-
-    Base.Extend(Object);
 
     /**
      * A function equal to super. use this only in constructor Functions

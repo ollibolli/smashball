@@ -1,15 +1,20 @@
 define(['smashball/Base','chai'],function(Base,chai){
     var expect = chai.expect;
+    var assert = chai.assert;
     describe('Base',function(){
         describe('Extend',function(){
             it('inherit functionality ',function(){
-                var obj = {
-                    fn1 : function(){},
-                    member:'string'
+                function Obj(){
+                    this.Super();
+                    this.fn1 = function(){};
+                    this.member = 'string';
                 }
-                Base.Extend(obj);
-                var b = new Base();
-                expect(b).to.haveOwnProperty('fn1');
+                Obj.Extend(Base);
+
+                var o = new Obj();
+                expect(o.instanceOf).to.exsist
+                expect(o.fn1).to.exsist
+
             });
         });
     });
