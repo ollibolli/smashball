@@ -5,7 +5,8 @@ startHttpServer(3000);
 function startHttpServer(port){
 	var express = require('express');
 	var app = express();
-	app
+	var path = require('path');
+    app
 	.use(express.static(path.normalize(__dirname + "/main")))
 	.use(express.directory(path.normalize(__dirname + "/main")))
 
