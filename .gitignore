@@ -1,3 +1,4 @@
 .idea/
-test-errors
-test-log
+test-errors.txt
+test-log.txt
+node_modules/
