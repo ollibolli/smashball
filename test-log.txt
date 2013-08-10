@@ -7,30 +7,15 @@ Test Case  - http://localhost:3000/test/js/Base.html
 [A[2K    [32m  ✓[0m[90m inherit functionality  [0m
 
 
-[92m  ✔[0m[32m 1 test complete[0m[90m (11 ms)[0m
+[92m  ✔[0m[32m 1 test complete[0m[90m (10 ms)[0m
 
 Test Case  - http://localhost:3000/test/js/Gameloop.html
-PHANTOM ERROR: TypeError: 'undefined' is not an object (evaluating 'this.prototype')
-TRACE:
-at http://localhost:3000/js/smashball/Base.js: 34 (in function "mixin")
-at http://localhost:3000/js/smashball/Base.js: 34 (in function "mixin")
-at http://localhost:3000/js/smashball/Gameloop.js: 31
-at http://localhost:3000/test/testvendor/require.js: 1588
-at http://localhost:3000/test/testvendor/require.js: 841
-at http://localhost:3000/test/testvendor/require.js: 1074
-at http://localhost:3000/test/testvendor/require.js: 126
-at http://localhost:3000/test/testvendor/require.js: 1117
-at http://localhost:3000/test/testvendor/require.js: 58 (in function "each")
-at http://localhost:3000/test/testvendor/require.js: 1118
-at http://localhost:3000/test/testvendor/require.js: 895
-at http://localhost:3000/test/testvendor/require.js: 1074
-at http://localhost:3000/test/testvendor/require.js: 126
-at http://localhost:3000/test/testvendor/require.js: 1117
-at http://localhost:3000/test/testvendor/require.js: 58 (in function "each")
-at http://localhost:3000/test/testvendor/require.js: 1118
-at http://localhost:3000/test/testvendor/require.js: 895
-at http://localhost:3000/test/testvendor/require.js: 1104
-at http://localhost:3000/test/testvendor/require.js: 754
-at http://localhost:3000/test/testvendor/require.js: 1129 (in function "callGetModule")
-at http://localhost:3000/test/testvendor/require.js: 1479
-at http://localhost:3000/test/testvendor/require.js: 1611
+
+[0m[0m
+[0m  Gameloop[0m
+  [90m  ◦ make all things: [0m
+[A[2K  [32m  ✓[0m[90m make all things [0m
+
+
+[92m  ✔[0m[32m 1 test complete[0m[90m (9 ms)[0m
+

@@ -2,7 +2,7 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 
 
 	function Gameloop(){
-        this.Super(this);
+        this.Super();
         this._fps = 60;
         this._running = false;
         this._loops = 0;
@@ -28,9 +28,6 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
             };
 		};
 
-    Gameloop.Include(pubSub);
-
-
     Gameloop.Extend(Base, {
 		setFrameRate : function setFrameRate(rate){
 			this._fps =  rate;
@@ -46,8 +43,7 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 	       	self._loops = 0;
 
 			function onframe(){
-	//	    	while ((new Date).getTime() > self._startTime && self._loops < self._maxFrameSkip) {	    
-		    	while ((new Date).getTime() > self._startTime) {	    
+		    	while ((new Date).getTime() > self._startTime) {
 		        	self.publish('gameTick');
 		           	self._startTime += self._skipTicks;
 		            self._loops++;
@@ -66,7 +62,7 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 			this._running = false;
 		}
 	});
-	
+    Gameloop.Include(pubSub);
 
 	return Gameloop;
 });

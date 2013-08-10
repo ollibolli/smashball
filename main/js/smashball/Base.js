@@ -8,7 +8,7 @@
  * 
  * Big contributor is Juan Mendes (http://js-bits.blogspot.se/);
  */
- 'use strict';
+ //'use strict';
 
 /**
  * This is the core function for Ollibolli javascript Inheritence
@@ -30,15 +30,11 @@
     }
 
 
-    Function.prototype.Include = function mixin (object, allowOverride) {
-        console.log(this.prototype);
+    Function.prototype.Include = function (object, allowOverride) {
         mixin(this.prototype, object, allowOverride);
     };
 
     Function.prototype.hasIncluded = function hasIncluded(object){
-        if (arguments.length < 1) {
-            throw new TypeError ("Called with " + arguments.length + "arguments, but expected at least 2.");
-        }
         for (var property in object) {
             if (object.hasOwnProperty(property) && !this.prototype.hasOwnProperty(property)){
                 return false;
