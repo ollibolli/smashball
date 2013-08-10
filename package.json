@@ -1,0 +1,24 @@
+{
+  "name": "smashball",
+  "version": "0.0.1",
+  "description": "smashball is a js game for two person colliding balls and take score",
+  "main": "node/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "~3.3.5",
+  },
+  "devDependencies": {
+     "testister": "~0.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ollibolli/smashball.git"
+  },
+  "author": "Olle Svensson (ollibolli)",
+  "license": "MIT"
+}

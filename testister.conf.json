@@ -1,0 +1,7 @@
+{
+  "extension" : "spec.js",
+  "mainDir" : "main" ,
+  "testDir" : "test" ,
+  "reporter" : "spec" ,
+  "logDir" : "./"
+}
