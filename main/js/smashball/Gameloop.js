@@ -1,5 +1,6 @@
-define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
+/* Pubsub is the global event handler for the system */
 
+define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 
 	function Gameloop(){
         this.Super();
@@ -44,12 +45,13 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 
 			function onframe(){
 		    	while ((new Date).getTime() > self._startTime) {
-		        	self.publish('gameTick');
+		        	//Publish an event to the event bus
+                    pubSub.publish('gameloop/gameTick');
 		           	self._startTime += self._skipTicks;
 		            self._loops++;
 		        }
 		       	if (self._running){
-			        self.publish('render');
+			        pubSub.publish('gameloop/render');
 					onframe._id = self._requestAnimationFrame.call(window, onframe);
 		       	} else {
 		       		self._cancelRequestAnimationFrame.call(window,onframe._id);
@@ -62,7 +64,8 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
 			this._running = false;
 		}
 	});
-    Gameloop.Include(pubSub);
+
+
 
 	return Gameloop;
 });

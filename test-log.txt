@@ -13,9 +13,42 @@ Test Case  - http://localhost:3000/test/js/Gameloop.html
 
 [0m[0m
 [0m  Gameloop[0m
-  [90m  ◦ make all things: [0m
-[A[2K  [32m  ✓[0m[90m make all things [0m
+[0m    get/setFrameRate[0m
+    [90m  ◦ Set and gets the framerate: [0m
+[A[2K    [32m  ✓[0m[90m Set and gets the framerate [0m
+[0m    start[0m
+    [90m  ◦ shoud start sending "gameloop/gameTick" and "gameloop/render" events: [0m
+[A[2K    [32m  ✓[0m[90m shoud start sending "gameloop/gameTick" and "gameloop/render" events [0m[31m(102ms)[0m
 
 
-[92m  ✔[0m[32m 1 test complete[0m[90m (9 ms)[0m
+[92m  ✔[0m[32m 2 tests complete[0m[90m (115 ms)[0m
+
+Test Case  - http://localhost:3000/test/js/keyboard.html
+
+[0m[0m
+[0m  keyboard[0m
+[0m    onKeyDown[0m
+    [90m  ◦ shoud register a key down: [0m
+[A[2K    [32m  ✓[0m[90m shoud register a key down [0m
+    [90m  ◦ should send a "keyboard/keydown" event: [0m
+[A[2K    [32m  ✓[0m[90m should send a "keyboard/keydown" event [0m
+[0m    onKeyUP[0m
+    [90m  ◦ should unregister a key down: [0m
+[A[2K    [32m  ✓[0m[90m should unregister a key down [0m
+    [90m  ◦ should send a "keyboard/keyup" event: [0m
+[A[2K    [32m  ✓[0m[90m should send a "keyboard/keyup" event [0m
+[0m    executeOnceWhenPressed[0m
+    [90m  ◦ should execute a callback once when key is pressed: [0m
+[A[2K    [32m  ✓[0m[90m should execute a callback once when key is pressed [0m
+[0m    executeOnceWhenPressed[0m
+    [36m  - should toggle between two callbacks when key is pressed[0m
+    [31m  1) should send a "keyboard/keydown" event[0m
+
+
+[91m  ✖[0m[31m 1 of 6 tests failed[0m[90m:[0m
+
+[0m  1) keyboard onKeyDown should send a "keyboard/keydown" event:
+[0m[31m     done() called multiple times[0m[90m
+  
+[0m
 

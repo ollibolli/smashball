@@ -1,0 +1,29 @@
+Test Case  - http://localhost:3000/test/js/keyboard.html
+
+[0m[0m
+[0m  keyboard[0m
+[0m    onKeyDown[0m
+    [90m  ◦ shoud register a key down: [0m
+[A[2K    [32m  ✓[0m[90m shoud register a key down [0m
+    [90m  ◦ should send a "keyboard/keydown" event: [0m
+[A[2K    [32m  ✓[0m[90m should send a "keyboard/keydown" event [0m
+[0m    onKeyUP[0m
+    [90m  ◦ should unregister a key down: [0m
+[A[2K    [32m  ✓[0m[90m should unregister a key down [0m
+    [90m  ◦ should send a "keyboard/keyup" event: [0m
+[A[2K    [32m  ✓[0m[90m should send a "keyboard/keyup" event [0m
+[0m    executeOnceWhenPressed[0m
+    [90m  ◦ should execute a callback once when key is pressed: [0m
+[A[2K    [32m  ✓[0m[90m should execute a callback once when key is pressed [0m
+[0m    executeOnceWhenPressed[0m
+    [36m  - should toggle between two callbacks when key is pressed[0m
+    [31m  1) should send a "keyboard/keydown" event[0m
+
+
+[91m  ✖[0m[31m 1 of 6 tests failed[0m[90m:[0m
+
+[0m  1) keyboard onKeyDown should send a "keyboard/keydown" event:
+[0m[31m     done() called multiple times[0m[90m
+  
+[0m
+
