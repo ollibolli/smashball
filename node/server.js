@@ -11,6 +11,8 @@ function startHttpServer(port){
 	.use(express.directory(path.normalize(process.cwd() + "/main")))
 
 
+
+
     app.listen(port);
     return app;
 }
