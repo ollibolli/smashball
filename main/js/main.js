@@ -18,15 +18,15 @@ define(['smashball/Gameloop','smashball/keyboard','lib/pubsub'], function(Gamelo
     }
 
     function toggleStartStop(key) {
-        var firstCallback = true;
+        var toggle = true;
         var eventExecute = function(event,data) {
             if (data.keyCode === key) {
-                if (firstCallback) {
+                if (toggle) {
                     gameloop.start();
-                    firstCallback = false;
+                    toggle = false;
                 } else {
                     gameloop.stop();
-                    firstCallback = true;
+                    toggle = true;
                 }
             }
         };
