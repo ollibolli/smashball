@@ -1,13 +1,11 @@
 define(['smashball/Gameloop','smashball/keyboard','lib/pubsub'], function(Gameloop,keyboard,pubsub){
+
     var gameloop = new Gameloop();
     gameloop.setFrameRate(2);
 
     /* subscribe to gametick event */
-
     printGametickEvents();
-
     toggleStartStop(keyboard.P);
-
 
     function printGametickEvents(){
         var gametick = 0;
@@ -18,8 +16,11 @@ define(['smashball/Gameloop','smashball/keyboard','lib/pubsub'], function(Gamelo
     }
 
     function toggleStartStop(key) {
+
+        pubsub.subscribe('keyboard/keyup', eventExecute);
+
         var toggle = true;
-        var eventExecute = function(event,data) {
+        function eventExecute(event,data) {
             if (data.keyCode === key) {
                 if (toggle) {
                     gameloop.start();
@@ -30,7 +31,6 @@ define(['smashball/Gameloop','smashball/keyboard','lib/pubsub'], function(Gamelo
                 }
             }
         };
-        pubsub.subscribe('keyboard/keyup', eventExecute);
     };
 
 });

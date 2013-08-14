@@ -1,29 +1,17 @@
-Test Case  - http://localhost:3000/test/js/keyboard.html
-
-[0m[0m
-[0m  keyboard[0m
-[0m    onKeyDown[0m
-    [90m  ◦ shoud register a key down: [0m
-[A[2K    [32m  ✓[0m[90m shoud register a key down [0m
-    [90m  ◦ should send a "keyboard/keydown" event: [0m
-[A[2K    [32m  ✓[0m[90m should send a "keyboard/keydown" event [0m
-[0m    onKeyUP[0m
-    [90m  ◦ should unregister a key down: [0m
-[A[2K    [32m  ✓[0m[90m should unregister a key down [0m
-    [90m  ◦ should send a "keyboard/keyup" event: [0m
-[A[2K    [32m  ✓[0m[90m should send a "keyboard/keyup" event [0m
-[0m    executeOnceWhenPressed[0m
-    [90m  ◦ should execute a callback once when key is pressed: [0m
-[A[2K    [32m  ✓[0m[90m should execute a callback once when key is pressed [0m
-[0m    executeOnceWhenPressed[0m
-    [36m  - should toggle between two callbacks when key is pressed[0m
-    [31m  1) should send a "keyboard/keydown" event[0m
-
-
-[91m  ✖[0m[31m 1 of 6 tests failed[0m[90m:[0m
-
-[0m  1) keyboard onKeyDown should send a "keyboard/keydown" event:
-[0m[31m     done() called multiple times[0m[90m
-  
-[0m
-
+Test Case  - http://localhost:3000/test/js/Entity.html
+PHANTOM ERROR: ReferenceError: Can't find variable: descripbe
+TRACE:
+at http://localhost:3000/test/js/Entity.spec.js: 16
+at http://localhost:3000/test/testvendor/require.js: 1588
+at http://localhost:3000/test/testvendor/require.js: 841
+at http://localhost:3000/test/testvendor/require.js: 1074
+at http://localhost:3000/test/testvendor/require.js: 126
+at http://localhost:3000/test/testvendor/require.js: 1117
+at http://localhost:3000/test/testvendor/require.js: 58 (in function "each")
+at http://localhost:3000/test/testvendor/require.js: 1118
+at http://localhost:3000/test/testvendor/require.js: 895
+at http://localhost:3000/test/testvendor/require.js: 1104
+at http://localhost:3000/test/testvendor/require.js: 754
+at http://localhost:3000/test/testvendor/require.js: 1129 (in function "callGetModule")
+at http://localhost:3000/test/testvendor/require.js: 1479
+at http://localhost:3000/test/testvendor/require.js: 1611

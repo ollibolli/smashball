@@ -29,43 +29,44 @@ define(['lib/pubsub','smashball/Base'],function(pubSub, Base){
             };
 		};
 
-    Gameloop.Extend(Base, {
-		setFrameRate : function setFrameRate(rate){
-			this._fps =  rate;
-			this._skipTicks = 1000 / this._fps;
-		},
-		getFrameRate : function getFrameRate(){
-			return this._fps;	
-		},
-		start : function start(){
-	       	var self = this;
-			self._startTime = (new Date).getTime();
-	       	self._running = true;
-	       	self._loops = 0;
+    Gameloop.Extend(Base);
 
-			function onframe(){
-		    	while ((new Date).getTime() > self._startTime) {
-		        	//Publish an event to the event bus
-                    pubSub.publish('gameloop/gameTick');
-		           	self._startTime += self._skipTicks;
-		            self._loops++;
-		        }
-		       	if (self._running){
-			        pubSub.publish('gameloop/render');
-					onframe._id = self._requestAnimationFrame.call(window, onframe);
-		       	} else {
-		       		self._cancelRequestAnimationFrame.call(window,onframe._id);
-		       	}
-			};
-			self._onFrame = onframe;
-			onframe();
-		},
-		stop : function stop(){
-			this._running = false;
-		}
-	});
+    Gameloop.prototype.setFrameRate = function setFrameRate(rate){
+        this._fps =  rate;
+        this._skipTicks = 1000 / this._fps;
+    };
 
+    Gameloop.prototype.getFrameRate = function getFrameRate(){
+        return this._fps;
+    };
 
+    Gameloop.prototype.start = function start(){
+           var self = this;
+        self._startTime = (new Date).getTime();
+           self._running = true;
+           self._loops = 0;
+
+        function onframe(){
+            while ((new Date).getTime() > self._startTime) {
+                //Publish an event to the event bus
+                pubSub.publish('gameloop/gameTick');
+                   self._startTime += self._skipTicks;
+                self._loops++;
+            }
+               if (self._running){
+                pubSub.publish('gameloop/render');
+                onframe._id = self._requestAnimationFrame.call(window, onframe);
+               } else {
+                   self._cancelRequestAnimationFrame.call(window,onframe._id);
+               }
+        };
+        self._onFrame = onframe;
+        onframe();
+    };
+
+    Gameloop.prototype.stop = function stop(){
+        this._running = false;
+    }
 
 	return Gameloop;
 });

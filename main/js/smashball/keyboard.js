@@ -29,6 +29,7 @@ define(['lib/pubsub'],function(pubsub){
     attachListener('keyup', Keyboard.onKeyup);
     attachListener('keydown', Keyboard.onKeydown);
 
+
     /* browser compatibility */
     function attachListener(event,callback){
         if (window.attachEvent) {
