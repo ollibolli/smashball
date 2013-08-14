@@ -1,4 +1,5 @@
-define(['smashball/keyboard', 'chai','sinon','lib/pubsub'], function(keyboard, chai, sinon, pubsub) {
+define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, chai, sinon, smashball) {
+    var eventBus = smashball.eventBus;
     var expect;
     expect = chai.expect;
 
@@ -19,7 +20,7 @@ define(['smashball/keyboard', 'chai','sinon','lib/pubsub'], function(keyboard, c
                     expect(spy.called).to.be.ok;
                     done();
                 });
-                pubsub.subscribe('keyboard/keydown',spy);
+                eventBus.subscribe('keyboard/keydown',spy);
                 keyboard.onKeydown(event);
 
 
@@ -41,7 +42,7 @@ define(['smashball/keyboard', 'chai','sinon','lib/pubsub'], function(keyboard, c
                     expect(spy.called).to.be.ok;
                     done();
                 });
-                pubsub.subscribe('keyboard/keyup',spy);
+                eventBus.subscribe('keyboard/keyup',spy);
                 keyboard.onKeyup(event);
 
             });

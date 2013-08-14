@@ -1,4 +1,5 @@
-define(['lib/pubsub'],function(pubsub){
+define(['smashball'],function(smashball){
+    var pubsub = smashball.eventBus;
     var Keyboard = {
         _pressed: {},
         LEFT: 37,

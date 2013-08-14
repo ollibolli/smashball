@@ -1,5 +1,5 @@
 define(['smashball/Entity','chai','sinon'],function(Entity, chai, sinon){
-    descripbe('Entity s',function(){
+    describe('Entity s',function(){
         describe('Entity(name)',function(){
             it('shall take a [name] as first parameret of type String as a identifier');
         });
@@ -10,7 +10,8 @@ define(['smashball/Entity','chai','sinon'],function(Entity, chai, sinon){
 
         describe('removeComponent(component)',function(){
             it('shall take a [component] as first parameter of type smashball/Component');
-            it('shall remove a component from the Entity');
+            it('shall take a component identifier')
+            it('shall remove the component from the Entity');
         });
 
     });

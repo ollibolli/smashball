@@ -1,6 +1,7 @@
-define(['smashball/Gameloop','chai','lib/pubsub','sinon'],function(Gameloop,chai,pubsub,sinon){
+define(['smashball/Gameloop','chai','smashball','sinon'],function(Gameloop,chai,smashball,sinon){
     var expect = chai.expect;
     var assert = chai.assert;
+    var pubsub = smashball.eventBus;
     describe('Gameloop',function(){
         var gameloop = new Gameloop();
         describe('get/setFrameRate',function(){

@@ -1,19 +1,19 @@
 /**
  * Ollibolli javascript inheritence
- * The goal of this is to create a simple prototyping.  
+ * The goal of this is to create a simple prototyping.
  * Using the javascript constructor function as the constructor and not breaking the prototype chain
- * by copying functions. And be able to verify constructor parameters in the constructor function. 
+ * by copying functions. And be able to verify constructor parameters in the constructor function.
  *
- * 
- * 
+ *
+ *
  * Big contributor is Juan Mendes (http://js-bits.blogspot.se/);
  */
- //'use strict';
+//'use strict';
 
 /**
  * This is the core function for Ollibolli javascript Inheritence
- * By copying the prototype of the prototyping object to a surrogate Constructor function and using the new on that prevent 
- * using the constructor function.  
+ * By copying the prototype of the prototyping object to a surrogate Constructor function and using the new on that prevent
+ * using the constructor function.
  */
 
 (function (){
@@ -66,19 +66,19 @@
         };
     }
 
-	function extend(base, sub){
-	    if (!sub.name){
+    function extend(base, sub){
+        if (!sub.name){
             sub.name = 'Proto'+base.name || 'Anonymous'
         }
 
-	    //using a surrogate constructor to prevent the using the new on the
-    	var surrogateConstructor;
+        //using a surrogate constructor to prevent the using the new on the
+        var surrogateConstructor;
         eval('surrogateConstructor = function '+ sub.name + '(){}');
-		surrogateConstructor.prototype = base.prototype;
-		sub.prototype = new surrogateConstructor();
-		sub.prototype.constructor = sub;
-		sub.prototype.$ = base.prototype;
-	}
+        surrogateConstructor.prototype = base.prototype;
+        sub.prototype = new surrogateConstructor();
+        sub.prototype.constructor = sub;
+        sub.prototype.$ = base.prototype;
+    }
 
     function mixin(target,object,allowOverride){
         for (var property in object) {
@@ -90,48 +90,54 @@
         };
         return true;
     };
-})();
 
 
-/**
- * Object father off all 
- */
-
-define(function(){
-
-    function Base(){};
 
     /**
-     * A function equal to super. use this only in constructor Functions
-     * Important to always call Super in the extended constructor function.
-     * By calling Super, every constructor in the prototype chain is applied on the new object
-     *
+     * Object father off all
      */
-    Base.prototype.Super = function(){
-        this.$.constructor.apply(this.$,arguments);
-    }
 
-    /**
-     * @return the name of the constructor function that created the obj
-     */
-    Base.prototype.getNameOfInstance = function (){
-        var funcNameRegex = /function (.{1,})\(/;
-        var results = (funcNameRegex).exec((this).constructor.toString());
-        return (results && results.length > 1) ? results[1] : "";
-    };
+    define(function(){
 
-    /**
-     * Check the instance of a object by the requireJs dependency id eg 'folder/Module'
-     * @param requireJSId {String}
-     * @return true if object is instance of that object.
-     */
-    Base.prototype.instanceOf = function(requireJsId){
-        try {
-            var result = (this instanceof require(requireJsId));
-        } catch (e){
-            return false;
+        function Base(){};
+
+        /**
+         * A function equal to super. use this only in constructor Functions
+         * Important to always call Super in the extended constructor function.
+         * By calling Super, every constructor in the prototype chain is applied on the new object
+         *
+         */
+        Base.prototype.Super = function(){
+            this.$.constructor.apply(this.$,arguments);
         }
-        return result;
-    };
-    return Base;
-});
+
+        /**
+         * @return the name of the constructor function that created the obj
+         */
+        Base.prototype.getNameOfInstance = function (){
+            var funcNameRegex = /function (.{1,})\(/;
+            var results = (funcNameRegex).exec((this).constructor.toString());
+            return (results && results.length > 1) ? results[1] : "";
+        };
+
+        /**
+         * Check the instance of a object by the requireJs dependency id eg 'folder/Module'
+         * @param requireJSId {String}
+         * @return true if object is instance of that object.
+         */
+        Base.prototype.instanceOf = function(requireJsId){
+            try {
+                var result = (this instanceof require(requireJsId));
+            } catch (e){
+                return false;
+            }
+            return result;
+        };
+
+        Base.prototype.mixin = function(obj,allowOverride){
+            mixin(this,obj,allowOverride);
+        }
+
+        return Base;
+    });
+})();
