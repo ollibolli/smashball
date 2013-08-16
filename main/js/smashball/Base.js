@@ -34,13 +34,8 @@
         mixin(this.prototype, object, allowOverride);
     };
 
-    Function.prototype.hasIncluded = function hasIncluded(object){
-        for (var property in object) {
-            if (object.hasOwnProperty(property) && !this.prototype.hasOwnProperty(property)){
-                return false;
-            }
-        };
-        return true;
+    Function.prototype.hasIncluded = function(object){
+        hasIncluded(this,object);
     };
 
     if(!Function.prototype.bind) {
@@ -91,6 +86,19 @@
         return true;
     };
 
+    function hasIncluded(subject,included,deep){
+        for (var property in object) {
+            if (object.hasOwnProperty(property) && !subject.prototype.hasOwnProperty(property)){
+                return false;
+            } else {
+                if (deep && obj[property]!==subject[property]){
+                    return false;
+                }
+            }
+        };
+        return true;
+
+    }
 
 
     /**
@@ -136,6 +144,10 @@
 
         Base.prototype.mixin = function(obj,allowOverride){
             mixin(this,obj,allowOverride);
+        }
+
+        Base.prototype.hasMixedin = function(obj){
+            return hasIncluded(this,obj);
         }
 
         return Base;

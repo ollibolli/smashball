@@ -1,17 +1,32 @@
-define(['smashball/Entity','chai','sinon'],function(Entity, chai, sinon){
+define(['smashball/Entity','chai','sinon','utils/_Pubsub'],function(Entity, chai, sinon){
     describe('Entity s',function(){
-        describe('Entity(name)',function(){
-            it('shall take a [name] as first parameret of type String as a identifier');
+        describe('mixin [utils/_Pubsub]',function(){
+            it('instance of Entity shall has mixed in [utils/_Pubsub]',function(){
+
+            });
+
+        describe('Entity(identifier)',function(){
+            it('shall take a [identifier] as first parameret of type String as a identifier',function(){
+
+            });
         });
         describe('addComponent(component)',function(){
-            it('shall take a [component] as first parameter of type smashball/Component');
-            it('shall return a component identifier');
+            it('shall take a [component] as first parameter of type smashball/Component', function(){
+
+            });
         });
 
         describe('removeComponent(component)',function(){
-            it('shall take a [component] as first parameter of type smashball/Component');
-            it('shall take a component identifier')
-            it('shall remove the component from the Entity');
+            it('shall take a [component] as first parameter of type smashball/Component',function(){
+
+            });
+            it('shall remove the component from the Entity',function(){
+
+            });
+        });
+
+        describe('subscribeGlobal')
+            it('')
         });
 
     });

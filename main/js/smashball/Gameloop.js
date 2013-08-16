@@ -3,8 +3,8 @@
 define(['smashball','smashball/Base'],function(smashball, Base){
 
     var eventBus = smashball.eventBus;
-    
-	function Gameloop(){
+
+    function Gameloop(){
         this.Super();
         this._fps = 60;
         this._running = false;
@@ -29,7 +29,7 @@ define(['smashball','smashball/Base'],function(smashball, Base){
             function(id) {
                 window.clearTimeout(id);
             };
-		};
+    };
 
     Gameloop.Extend(Base);
 
@@ -43,24 +43,26 @@ define(['smashball','smashball/Base'],function(smashball, Base){
     };
 
     Gameloop.prototype.start = function start(){
-           var self = this;
+        var self = this;
         self._startTime = (new Date).getTime();
-           self._running = true;
-           self._loops = 0;
+        self._running = true;
+        self._loops = 0;
 
         function onframe(){
             while ((new Date).getTime() > self._startTime) {
-                //Publish an event to the event bus
+
                 eventBus.publish('gameloop/gameTick');
-                   self._startTime += self._skipTicks;
+                self._startTime += self._skipTicks;
                 self._loops++;
+
             }
-               if (self._running){
+
+            if (self._running){
                 eventBus.publish('gameloop/render');
                 onframe._id = self._requestAnimationFrame.call(window, onframe);
-               } else {
-                   self._cancelRequestAnimationFrame.call(window,onframe._id);
-               }
+            } else {
+                self._cancelRequestAnimationFrame.call(window,onframe._id);
+            }
         };
         self._onFrame = onframe;
         onframe();
@@ -70,5 +72,5 @@ define(['smashball','smashball/Base'],function(smashball, Base){
         this._running = false;
     }
 
-	return Gameloop;
+    return Gameloop;
 });

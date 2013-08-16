@@ -30,14 +30,22 @@ define([
     e1.addComponent(new Render());
     e1.addComponent(new Pos());
 
-    e2 = new Entity('gustaf');
-
-
     function printGametickEvents(){
+
         var gametick = 0;
+
         eventBus.subscribe('gameloop/gameTick',function(ev,data){
-            document.getElementsByTagName('body')[0].innerHTML = 'Event : '+ ev +' Data : '+JSON.stringify(data)+' GameTick: '+ gametick;
+            document.getElementById('diven').innerHTML = 'Event : '+ ev +' Data : '+JSON.stringify(data)+' GameTick: '+ gametick;
             gametick++;
+        });
+        var render = 0;
+        eventBus.subscribe('gameloop/render',function(ev,data){
+            render++;
+            if (render%100 > 50){
+                document.getElementById('diven2').innerHTML = '<p>GOOOOO</p>';
+            } else {
+                document.getElementById('diven2').innerHTML = '<p>NOOOOO</p>';
+            }
         });
     }
 

@@ -10,8 +10,9 @@ define(['smashball/comp/Component'],function(Component){
         this.entity.subscribe('pos/newPos', this.updatePos)
     }
 
-    Render.prototype.subscribeGlobal = function(){
-        this.entity.subscribe('gameloop/render', this.renderMe)
+    /*override*/
+    Render.prototype.subscribeGlobal = function(eventbus){
+        eventbus.subscribe('gameloop/render', this.renderMe)
     }
 
     Render.prototype.updatePos = function(ev,data){
