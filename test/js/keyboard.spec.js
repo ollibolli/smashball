@@ -68,7 +68,6 @@ define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, ch
 
                 var spy1 = function(){
                     toggled ++;
-                    console.log(toggled);
                     if (toggle == 2){
                         done();
                     }

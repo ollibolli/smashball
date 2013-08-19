@@ -1,4 +1,15 @@
-define(['smashball/Entity','chai','sinon','utils/_Pubsub','smashball/comp/Component'],function(Entity, chai, sinon, _Pubsub, Component){
+define(['smashball/Entity',
+    'chai',
+    'sinon',
+    'utils/_Pubsub',
+    'smashball/comp/Component'
+],function(
+    Entity,
+    chai,
+    sinon,
+    _Pubsub,
+    Component
+){
     var expect = chai.expect;
     describe('Entity',function(){
         describe('mixin [utils/_Pubsub]',function(){
@@ -8,7 +19,7 @@ define(['smashball/Entity','chai','sinon','utils/_Pubsub','smashball/comp/Compon
         });
 
         describe.skip('Entity(identifier)',function(){
-            it('shall take a [identifier] as first parameret of type String as a identifier',function(){
+            it('shall take a [String] as first parameter a identifier',function(){
                  var entity= new Entity('test');
                 expect(entity.name).to.equal('test');
             });
@@ -71,7 +82,7 @@ define(['smashball/Entity','chai','sinon','utils/_Pubsub','smashball/comp/Compon
         });
 
         describe.skip('publishSyncGlobal(event,data)',function(){
-            it('',function(){
+            it('_',function(){
 
             });
         });

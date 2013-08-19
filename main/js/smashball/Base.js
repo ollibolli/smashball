@@ -38,6 +38,8 @@
         return hasIncluded(this.prototype,object,deep);
     };
 
+    Function.prototype.assert = assert;
+
     if(!Function.prototype.bind) {
         /**
          * The bind function i binding this to oThis and not to the object that the function is sitting on
@@ -104,6 +106,14 @@
         return true;
     }
 
+    function assert(expression,message){
+        if (expression){
+            return true;
+        } else {
+            throw message;
+        }
+    }
+
 
     /**
      * Object father off all
@@ -160,14 +170,11 @@
             return hasIncluded(this,obj);
         };
         
-        Base.prototype.assert = function(expression,message){
-            if (expression){
-                return true;
-            } else {
-                throw message;
-            }
-        }
+
+        Base.prototype.assert = assert;
 
         return Base;
+
     });
+
 })();
