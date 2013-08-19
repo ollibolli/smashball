@@ -7,16 +7,28 @@ define(['smashball/Base'],function(Base){
         this.entity = null;
     }
 
-    Component.prototype.subscribeGlobal = function(){
-         throw "Implement This "+ this.name;
-    }
-
-    Component.prototype.subscribeEntity = function(){
-         throw "Implement This "+ this.name;
-    }
-
-    Component.prototype.addEntity = function(entity){
+    /**
+     * @param entity
+     */
+    Component.prototype.setEntity = function(entity){
         this.entity = entity || null;
+        this.doSubscriptions();
+    };
+
+    /**
+     * Override this function
+     * Here is a good place to add subscriptions
+     */
+    Component.prototype.doSubscriptions = function(){
+        return null;
+    }
+
+    /**
+     * Override this function
+     * Here is a good place to remove subscriptions
+     */
+    Component.prototype.undoSubscriptions = function(){
+        return null;
     }
 
     return Component;

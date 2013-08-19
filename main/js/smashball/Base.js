@@ -1,4 +1,4 @@
-/**
+	/**
  * Ollibolli javascript inheritence
  * The goal of this is to create a simple prototyping.
  * Using the javascript constructor function as the constructor and not breaking the prototype chain
@@ -34,8 +34,8 @@
         mixin(this.prototype, object, allowOverride);
     };
 
-    Function.prototype.hasIncluded = function(object){
-        hasIncluded(this,object);
+    Function.prototype.hasIncluded = function(object,deep){
+        return hasIncluded(this.prototype,object,deep);
     };
 
     if(!Function.prototype.bind) {
@@ -86,18 +86,22 @@
         return true;
     };
 
-    function hasIncluded(subject,included,deep){
-        for (var property in object) {
-            if (object.hasOwnProperty(property) && !subject.prototype.hasOwnProperty(property)){
+    function hasIncluded(subject,included){
+        if (!included) return false ;
+        for (var property in included) {
+            if (included.hasOwnProperty(property) && !subject.hasOwnProperty(property)){
                 return false;
             } else {
-                if (deep && obj[property]!==subject[property]){
+                if (
+                    included.hasOwnProperty(property)
+                    && typeof included[property] === 'function'
+                    && included[property].toString() !== subject[property].toString())
+                {
                     return false;
                 }
             }
         };
         return true;
-
     }
 
 
@@ -130,12 +134,18 @@
 
         /**
          * Check the instance of a object by the requireJs dependency id eg 'folder/Module'
-         * @param requireJSId {String}
+         * @param object [{}] optional
+         * @param requireJSId [String]
          * @return true if object is instance of that object.
          */
-        Base.prototype.instanceOf = function(requireJsId){
+        Base.prototype.instanceOf = function(object, requireJsId){
+            if (typeof object === 'string'){
+                requireJsId = object;
+                object = this;
+            }
+
             try {
-                var result = (this instanceof require(requireJsId));
+                var result = (object instanceof require(requireJsId));
             } catch (e){
                 return false;
             }
@@ -144,10 +154,18 @@
 
         Base.prototype.mixin = function(obj,allowOverride){
             mixin(this,obj,allowOverride);
-        }
+        };
 
         Base.prototype.hasMixedin = function(obj){
             return hasIncluded(this,obj);
+        };
+        
+        Base.prototype.assert = function(expression,message){
+            if (expression){
+                return true;
+            } else {
+                throw message;
+            }
         }
 
         return Base;
