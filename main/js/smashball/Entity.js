@@ -1,12 +1,14 @@
-define(['smashball/Base','utils/_Pubsub','smashball'],function(Base, _Pubsub, smashball){
+define(['smashball/Base','utils/_Pubsub','smashball','utils/util'],function(Base, _Pubsub, smashball, util){
     var eventbus = smashball.eventBus;
 
     Entity.Extend(Base);
 
     function Entity(id){
+        this.assert(typeof id === 'string', new TypeError("Expected parameter of type [String]"));
         this.Super();
         this.mixin(new _Pubsub());
         this._id = id;
+        this._components = {};
         this._venue = null;
     };
 
@@ -28,6 +30,7 @@ define(['smashball/Base','utils/_Pubsub','smashball'],function(Base, _Pubsub, sm
 
     Entity.prototype.addComponent = function(component){
         this.assert(this.instanceOf(component,'smashball/comp/Component'),'Not a smashball/comp/Component');
+        this._components[util.getNameOf(component)] = component;
         component.setEntity(this);
     }
 

@@ -1,3 +1,10 @@
+function getNameOf(obj) {
+    var funcNameRegex = /function (.{1,})\(/;
+    obj = obj || this ;
+    var results = (funcNameRegex).exec((obj).constructor.toString());
+    return (results && results.length > 1) ? results[1] : "";
+};
+
 define([
     'smashball/Entity',
     'smashball/Gameloop',
@@ -23,7 +30,7 @@ define([
 
         venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 500, 500));
         ball1 = new Entity('ball1');
-        ball1.addComponent(new Rendable())
+        ball1.addComponent(new Rendable());
         venue.addEntity(ball1);
 
         gameloop = new Gameloop();

@@ -1,3 +1,4 @@
+
 	/**
  * Ollibolli javascript inheritence
  * The goal of this is to create a simple prototyping.

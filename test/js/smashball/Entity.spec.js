@@ -2,14 +2,16 @@ define(['smashball/Entity',
     'chai',
     'sinon',
     'utils/_Pubsub',
-    'smashball/comp/Component'
+    'smashball/comp/Component',
+    'utils/util'
 ],function(
     Entity,
     chai,
     sinon,
     _Pubsub,
-    Component
-){
+    Component,
+    util
+    ){
     var expect = chai.expect;
     describe('Entity',function(){
         describe('mixin [utils/_Pubsub]',function(){
@@ -18,11 +20,23 @@ define(['smashball/Entity',
             });
         });
 
-        describe.skip('Entity(identifier)',function(){
+        describe('Entity(identifier)',function(){
             it('shall take a [String] as first parameter a identifier',function(){
-                 var entity= new Entity('test');
-                expect(entity.name).to.equal('test');
+                expect(function() {
+                    var e = new Entity()
+                }).to.throw();
+
+                expect(function() {
+                    var e = new Entity('identifier');
+                }).to.not.throw();
+                var entity= new Entity('test');
+                expect(entity.getId()).to.equal('test');
             });
+            it('should have a _componets propertie of type Object "{}" ', function() {
+                var e = new Entity('test');
+                expect(typeof e._components).equals(typeof {});
+            });
+
         });
         describe('addComponent(component)',function(){
             it('shall take first parameter of type [smashball/comp/Component]', function(){
@@ -38,8 +52,25 @@ define(['smashball/Entity',
                     entity.addComponent(new Entity('name'));
                 }).throws();
             });
-            it.skip('shall add the component to the Entity',function(){
+            it('shall add the component to the Entity',function(){
+                var e = new Entity('idet');
 
+                function Test(){};
+
+                Test.Extend(Component);
+                var component = new Test();
+
+                e.addComponent(component);
+                expect(util.getNameOf(e._components['Test'])).to.equals('Test');
+            });
+            it('should call componets setEntity([entity])',function (){
+                var comp = new Component();
+                comp.setEntity = sinon.spy();
+
+                var e = new Entity('Test');
+                e.addComponent(comp);
+
+                expect(comp.setEntity.called).to.be.ok;
             });
         });
 

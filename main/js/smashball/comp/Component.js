@@ -12,23 +12,22 @@ define(['smashball/Base'],function(Base){
      */
     Component.prototype.setEntity = function(entity){
         this.entity = entity || null;
-        this.doSubscriptions();
     };
 
     /**
      * Override this function
      * Here is a good place to add subscriptions
      */
-    Component.prototype.doSubscriptions = function(){
-        return null;
+    Component.prototype.addSubscriptions = function(){
+        throw 'Not implemented';
     }
 
     /**
      * Override this function
      * Here is a good place to remove subscriptions
      */
-    Component.prototype.undoSubscriptions = function(){
-        return null;
+    Component.prototype.removeSubscriptions = function(){
+        throw 'Not implemented';
     }
 
     return Component;
