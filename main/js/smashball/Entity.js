@@ -3,10 +3,10 @@ define(['smashball/Base','utils/_Pubsub','smashball'],function(Base, _Pubsub, sm
 
     Entity.Extend(Base);
 
-    function Entity(name){
+    function Entity(id){
         this.Super();
         this.mixin(new _Pubsub());
-        this.name = name;
+        this._id = id;
         this._venue = null;
     };
 
@@ -40,6 +40,9 @@ define(['smashball/Base','utils/_Pubsub','smashball'],function(Base, _Pubsub, sm
         this._venue=venue;
     }
 
+    Entity.prototype.getId = function (){
+        return this._id;
+    }
 
     return Entity;
 

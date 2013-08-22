@@ -1,6 +1,6 @@
 define(['smashball'],function(smashball){
     var pubsub = smashball.eventBus;
-    var Keyboard = {
+    var keyboard = {
         _pressed: {},
         LEFT: 37,
         UP: 38,
@@ -13,22 +13,22 @@ define(['smashball'],function(smashball){
         SPACE: 32
     };
 
-    Keyboard.isDown = function(keyCode) {
-        return Keyboard._pressed[keyCode];
+    keyboard.isDown = function(keyCode) {
+        return keyboard._pressed[keyCode];
     };
 
-    Keyboard.onKeydown = function(event) {
-        Keyboard._pressed[event.keyCode] = true;
+    keyboard.onKeydown = function(event) {
+        keyboard._pressed[event.keyCode] = true;
         pubsub.publish('keyboard/keydown',event);
 
     };
-    Keyboard.onKeyup = function(event) {
-        delete Keyboard._pressed[event.keyCode];
+    keyboard.onKeyup = function(event) {
+        delete keyboard._pressed[event.keyCode];
         pubsub.publish('keyboard/keyup',event);
     };
 
-    attachListener('keyup', Keyboard.onKeyup);
-    attachListener('keydown', Keyboard.onKeydown);
+    attachListener('keyup', keyboard.onKeyup);
+    attachListener('keydown', keyboard.onKeydown);
 
 
     /* browser compatibility */
@@ -47,7 +47,7 @@ define(['smashball'],function(smashball){
             window.removeEventListener(event, callback, false);
         }
     }
-/*    Keyboard.executeOnceWhenPressed = function(keycode, callback) {
+/*    keyboard.executeOnceWhenPressed = function(keycode, callback) {
         var _this = this;
         function cbWrapper(event) {
             if (event.keyCode === keycode) {
@@ -61,7 +61,7 @@ define(['smashball'],function(smashball){
         attachListener('keyup',cbWrapper, false);
     };
 
-    Keyboard.toggleWhenPressed = function(keycode, callback1, callback2) {
+    keyboard.toggleWhenPressed = function(keycode, callback1, callback2) {
         var eventExecute, firstCallback;
         firstCallback = true;
         eventExecute = function(event) {
@@ -78,5 +78,5 @@ define(['smashball'],function(smashball){
         attachListener('keyup', eventExecute);
     };  */
 
-    return Keyboard;
+    return keyboard;
 });
