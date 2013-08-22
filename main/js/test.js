@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-define(['smashball/Entity'],function(Entity){
-=======
 define([
     'smashball/Entity',
     'smashball/Gameloop',
@@ -29,14 +26,8 @@ define([
         ball1.addComponent(new Rendable())
         venue.addEntity(ball1);
 
-
->>>>>>> 05a1207345b2c8a43d15dca5c3323473ece8bd81
-
-
         gameloop = new Gameloop();
         gameloop.setFrameRate(2);
         gameloop.start();
-
-
 
 });
