@@ -27,7 +27,7 @@ define(['smashball/Base'],function(Base){
      * Here is a good place to remove subscriptions
      */
     Component.prototype.removeSubscriptions = function(){
-        throw 'Not implemented';
+        throw 'Not implemented'; //TODO check which component not implemented
     }
 
     return Component;

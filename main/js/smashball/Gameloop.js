@@ -1,4 +1,5 @@
 /* Pubsub is the global event handler for the system */
+//TODO pass venue instead of graphic to gameloop
 
 define(['smashball','smashball/Base'],function(smashball, Base){
 
@@ -48,6 +49,7 @@ define(['smashball','smashball/Base'],function(smashball, Base){
         self._running = true;
         self._loops = 0;
 
+
         function onframe(){
             while ((new Date).getTime() > self._startTime) {
 
@@ -58,7 +60,7 @@ define(['smashball','smashball/Base'],function(smashball, Base){
             }
 
             if (self._running){
-                eventBus.publish('gameloop/render');
+                eventBus.publish('gameloop/render', self._graphic);
                 onframe._id = self._requestAnimationFrame.call(window, onframe);
             } else {
                 self._cancelRequestAnimationFrame.call(window,onframe._id);
@@ -70,6 +72,13 @@ define(['smashball','smashball/Base'],function(smashball, Base){
 
     Gameloop.prototype.stop = function stop(){
         this._running = false;
+    }
+
+    Gameloop.prototype.setGraphic = function(graphic) {
+        this._graphic = graphic;
+    }
+    Gameloop.prototype.getGraphic = function() {
+        return this._graphic;
     }
 
     return Gameloop;

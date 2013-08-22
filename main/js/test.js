@@ -11,9 +11,10 @@ define([
     'smashball',
     'smashball/keyboard',
     'smashball/Venue',
-    'smashball/Graphic'
+    'smashball/Graphic',
+    'smashball/comp/Rendable'
      ],
-     function(Entity, Gameloop, smashball, keyboard, Venue, Graphic) {
+     function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable) {
         var gameloop,
             eventBus,
             venue,
@@ -30,10 +31,14 @@ define([
 
         venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 500, 500));
         ball1 = new Entity('ball1');
-        ball1.addComponent(new Rendable());
+        var rendable = new Rendable();
+
+        ball1.addComponent(rendable);
+        rendable.addSubscriptions();
         venue.addEntity(ball1);
 
         gameloop = new Gameloop();
+        gameloop.setGraphic(venue._graphic);
         gameloop.setFrameRate(2);
         gameloop.start();
 

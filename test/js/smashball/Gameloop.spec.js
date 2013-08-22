@@ -1,4 +1,4 @@
-define(['smashball/Gameloop','chai','smashball','sinon'],function(Gameloop,chai,smashball,sinon){
+define(['smashball/Gameloop','chai','smashball','sinon', 'smashball/Graphic'],function(Gameloop, chai, smashball, sinon, Graphic){
     var expect = chai.expect;
     var assert = chai.assert;
     var pubsub = smashball.eventBus;
@@ -10,6 +10,13 @@ define(['smashball/Gameloop','chai','smashball','sinon'],function(Gameloop,chai,
                gameloop.setFrameRate(30);
                expect(gameloop.getFrameRate()).to.equal(30);
                expect(gameloop.getFrameRate()).to.not.equal(fps);
+            });
+        });
+        describe('get/set graphic',function(){
+            it ('Set and gets graphic',function(){
+              var graphic = Graphic.factory('canvas2d', document.createElement('element'), 500, 500);
+              gameloop.setGraphic(graphic);
+              expect(gameloop.getGraphic()).equals(graphic);
             });
         });
         describe('start',function(){
@@ -29,6 +36,7 @@ define(['smashball/Gameloop','chai','smashball','sinon'],function(Gameloop,chai,
                   gameloop.stop();
                   expect(gametickCb.called).to.be.ok;
                   expect(renderCb.called).to.be.ok;
+                  expect(renderCb.getCall(5).args[1]);
                   done();
 
                 },100);
