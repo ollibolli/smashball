@@ -1,5 +1,4 @@
-define(['sinon','chai','smashball/comp/Rendable'],function(sinon,chai,Rendable
-){
+define(['sinon','chai','smashball/comp/Rendable'],function(sinon, chai, Rendable){
     'use strict';
     
     var expect = chai.expect;
@@ -7,8 +6,10 @@ define(['sinon','chai','smashball/comp/Rendable'],function(sinon,chai,Rendable
 
     describe('Rendable',function(){
         describe('implement addSubscriptions()',function(){
+            var rendable = new Rendable();
             it ('should add subscriptions',function(){
-                
+                rendable.addSubscriptions();
+
             });
         });
     });
