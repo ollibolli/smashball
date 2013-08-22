@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Testister Test runner</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../testvendor/mocha.css" />
+<script src=" ../../testvendor/require.js"
+	type="text/javascript"></script>
+<script> 
+		require.config({  
+	 		baseUrl: "/js",  
+	 		paths : {   
+	 			testvendor:'../test/testvendor',
+	 			chai : "../test/testvendor/chai",
+	 			test : '../test',  
+	 			sinon : "../test/testvendor/sinon-1.5.2",
+	 		},
+	 	});  
+	 /*  
+	  * Here load and sett upp global objects accessable in test modules.  
+	  */  
+		  
+		require([ 'require' , 'testvendor/mocha' ], function(require){ 
+		 	mocha.setup("bdd");  
+		 	require( ["test/js/smashball/Graphic.spec"] , function(BaseSpec){  
+		 		if (window.mochaPhantomJS) {   
+					mochaPhantomJS.run();  
+		 		}else {  
+		 			mocha.setup({reporter:"html"});  
+		 			mocha.run();  
+		 		}  	
+		 	});  
+		 });  
+		  
+		 </script>
+</head>
+<body>
+	<div id="mocha"></div>
+</body>
+</html>
