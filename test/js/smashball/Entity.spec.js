@@ -25,16 +25,16 @@ define(['smashball/Entity',
             });
         });
         describe('addComponent(component)',function(){
-            it('shall take a [component] as first parameter of type smashball/comp/Component', function(){
+            it('shall take first parameter of type [smashball/comp/Component]', function(){
 
                 expect(function(){
-                    var entity= new Entity('test');
-                    var component =new Component();
+                    var entity = new Entity('test');
+                    var component = new Component();
                     entity.addComponent(new Component());
                 }).not.throws(Error);
 
                 expect(function(){
-                    var entity= new Entity('test');
+                    var entity = new Entity('test');
                     entity.addComponent(new Entity('name'));
                 }).throws();
             });
@@ -88,7 +88,7 @@ define(['smashball/Entity',
         });
         describe('setVenue(venue)',function(){
             it('take a [smashball/Graphic] as first parameter',function(){
-                
+
             });
         });
     });

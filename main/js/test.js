@@ -23,6 +23,7 @@ define([
 
         venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 500, 500));
         ball1 = new Entity('ball1');
+        ball1.addComponent(new Rendable())
         venue.addEntity(ball1);
 
 
