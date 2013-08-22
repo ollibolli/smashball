@@ -8,7 +8,8 @@ define(['smashball/Base'],function(Base){
      */
     function Venue(graphic){
         this.Super();
-        this.assert(this.instanceOf(graphic,'smashball/Graphic'), new TypeError ('Not a smashball/Graphic'));
+        this._entityPool = {};
+        this.assert(this.instanceOf(graphic,'smashball/Graphic'), new TypeError ('Not a [smashball/Graphic]'));
         this._graphic=graphic;
     };
 
@@ -18,7 +19,8 @@ define(['smashball/Base'],function(Base){
      * @return id [Number]
      */
     Venue.prototype.addEntity = function(entity){
-        return 0;
+        this.assert(this.instanceOf(entity, 'smashball/Entity'), new TypeError ('Not a [smashball/Entity] object'));
+        this._entityPool[entity.id] = entity;
     };
 
     /**

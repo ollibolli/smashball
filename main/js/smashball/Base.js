@@ -153,9 +153,9 @@
                 requireJsId = object;
                 object = this;
             }
-
             try {
                 var result = (object instanceof require(requireJsId));
+
             } catch (e){
                 return false;
             }
@@ -169,7 +169,7 @@
         Base.prototype.hasMixedin = function(obj){
             return hasIncluded(this,obj);
         };
-        
+
 
         Base.prototype.assert = assert;
 
