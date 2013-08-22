@@ -9,7 +9,7 @@ define(['smashball/Base'],function(Base){
     function Venue(graphic){
         this.Super();
         this.assert(this.instanceOf(graphic,'smashball/Graphic'), new TypeError ('Not a smashball/Graphic'));
-        this._graphic=graphic;
+        this._graphic = graphic;
     };
 
     /**
@@ -38,6 +38,10 @@ define(['smashball/Base'],function(Base){
         return null;
     };
 
+    /**
+     *
+     * @param entity
+     */
     Venue.prototype.addToScene = function(entity){
         return null;
     };
