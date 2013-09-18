@@ -14,12 +14,8 @@ define(['utils/util'],function (util){
 
     //underscore have a mixinfunction to mixin additional underscore functions.
     _ = underscoreHolder._;
-    _._mixin = _.mixin;
-    delete _.mixin;
-    _._extend = _.extend;
-    delete _.extend;
 
-    util.mixin(_, util, false);
+    util.Mixin(_, util, false);
 
     return _;
 });

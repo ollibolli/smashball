@@ -34,7 +34,7 @@ define(['utils/_'],function(_){
     Base.prototype.instanceOf = _.instanceOf;
 
     Base.prototype.mixin = function(obj,allowOverride){
-        _.mixin(this,obj,allowOverride);
+        _.Mixin(this,obj,allowOverride);
     };
 
     Base.prototype.hasMixedin = function(obj){
@@ -65,14 +65,14 @@ define(['utils/_'],function(_){
          *  @param methods a obj that is added to the objects prototype
          */
         Function.prototype.Extend = function(parent, methods){
-            _.extend (parent,this);
+            _.Extend (parent,this);
             if (methods) {
-                _.mixin(this.prototype,methods, true);
+                _.Mixin(this.prototype,methods, true);
             }
         };
 
         Function.prototype.Include = function (object, allowOverride) {
-            _.mixin(this.prototype, object, allowOverride);
+            _.Mixin(this.prototype, object, allowOverride);
         };
 
         Function.prototype.hasIncluded = function(object,deep){

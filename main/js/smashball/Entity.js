@@ -11,7 +11,7 @@ define(['utils/_',
     function Entity(id){
         _.assertParam(id,'String');
         this.Super();
-        this.mixin(new _Pubsub());
+        this.mixin(new _Pubsub(),true);
         this._id = id;
         this._components = {};
         this._venue = null;

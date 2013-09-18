@@ -15,6 +15,12 @@ define([
         //mock
         var graphic = Graphic.factory('canvas2d', document.createElement('element'), 500, 500);
 
+        describe('Render(rederObject)',function(){
+            it('',function(){
+                
+            });
+        });
+        
         describe('implement addSubscriptions()',function(){
             var render = new Render();
             it ('should add subscriptions',function(done){

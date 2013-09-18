@@ -12,7 +12,7 @@ define(function(){
         return (results && results.length > 1) ? results[1] : "";
     };
 
-    util.extend = function(base, sub){
+    util.Extend = function(base, sub){
         if (!sub.name){
             sub.name = 'Proto'+base.name || 'Anonymous'
         }
@@ -26,7 +26,7 @@ define(function(){
         sub.prototype.$ = base.prototype;
     };
 
-    util.mixin = function mixin(target,object,allowOverride){
+    util.Mixin = function mixin(target,object,allowOverride){
         for (var property in object) {
             if (object.hasOwnProperty(property)) {
                 if (allowOverride || ! target[property]) {
