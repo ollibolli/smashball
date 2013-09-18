@@ -3,5 +3,5 @@
   "mainDir" : "main" ,
   "testDir" : "test" ,
   "reporter" : "spec" ,
-  "logDir" : "./"
+  "logDir" : "target"
 }

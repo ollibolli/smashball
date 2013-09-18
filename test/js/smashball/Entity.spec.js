@@ -22,11 +22,11 @@ define(['smashball/Entity',
 
         describe('Entity(identifier)',function(){
             it('shall take a [String] as first parameter a identifier',function(){
-                expect(function() {
-                    var e = new Entity()
+                expect(function(){
+                    var e = new Entity();
                 }).to.throw();
 
-                expect(function() {
+                expect(function(){
                     var e = new Entity('identifier');
                 }).to.not.throw();
                 var entity= new Entity('test');
@@ -78,7 +78,7 @@ define(['smashball/Entity',
             it('shall take a [component] as first parameter of type smashball/Component',function(){
                 expect(function(){
                     var entity= new Entity('test');
-                    var component =new Component();
+                    var component = new Component();
                     entity.addComponent(component);
                     entity.removeComponent(component);
                 }).not.throws(Error);
@@ -113,14 +113,27 @@ define(['smashball/Entity',
         });
 
         describe.skip('publishSyncGlobal(event,data)',function(){
-            it('_',function(){
+            it('stub',function(){
 
             });
         });
-        describe('setVenue(venue)',function(){
-            it('take a [smashball/Graphic] as first parameter',function(){
 
+        describe('componentsSubscriptions()',function(){
+            it('should call components addSubscriptions()',function(){
+                var e = new Entity('test');
+                var comp = new Component();
+                //override
+                comp.addSubscriptions = function(){};
+                sinon.spy(comp,"addSubscriptions");
+                e.addComponent(comp);
+                e.componentsSubscriptions();
+                expect(comp.addSubscriptions.called).to.be.ok;
             });
         });
+//        describe.skip ('setVenue(venue)',function(){
+//            it('take a [smashball/Graphic] as first parameter',function(){
+//
+//            });
+//        });
     });
 });

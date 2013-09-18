@@ -1,7 +1,11 @@
 /* Pubsub is the global event handler for the system */
 //TODO pass venue instead of graphic to gameloop
 
-define(['smashball','smashball/Base'],function(smashball, Base){
+define([
+    'smashball',
+    'smashball/Base',
+    'utils/_'
+],function(smashball, Base, _){
 
     var eventBus = smashball.eventBus;
 
@@ -60,7 +64,7 @@ define(['smashball','smashball/Base'],function(smashball, Base){
             }
 
             if (self._running){
-                eventBus.publish('gameloop/render', self._graphic);
+                eventBus.publish('gameloop/render', self.getVenue().getGraphic());
                 onframe._id = self._requestAnimationFrame.call(window, onframe);
             } else {
                 self._cancelRequestAnimationFrame.call(window,onframe._id);
@@ -74,11 +78,13 @@ define(['smashball','smashball/Base'],function(smashball, Base){
         this._running = false;
     }
 
-    Gameloop.prototype.setGraphic = function(graphic) {
-        this._graphic = graphic;
+    Gameloop.prototype.setVenue = function(venue) {
+        _.assertParam(venue,'smashball/Venue');
+        this._venue = venue;
     }
-    Gameloop.prototype.getGraphic = function() {
-        return this._graphic;
+    Gameloop.prototype.getVenue = function() {
+        if (!this._venue) throw new Error('Graphic on Gameloop not set');
+        return this._venue
     }
 
     return Gameloop;

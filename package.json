@@ -1,7 +1,7 @@
 {
   "name": "smashball",
   "version": "0.0.1",
-  "description": "smashball is a js game for two person colliding balls and take score",
+  "description": "Smashball is a js game for two person. Collide balls and take scores",
   "main": "node/server.js",
   "directories": {
     "test": "test"
@@ -10,7 +10,7 @@
     "express": "~3.3.5"
   },
   "devDependencies": {
-     "testister": "~0.0.1"
+     "testister": "~0.0.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

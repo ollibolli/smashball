@@ -23,9 +23,7 @@ define([
                 var e = new Entity('identi');
                 rendable.setEntity(e);
                 rendable.addSubscriptions();
-
                 eventBus.publishSync('gameloop/render', graphic);
-
             });
         });
     });

@@ -22,7 +22,7 @@
 		  
 		require([ 'require' , 'testvendor/mocha' ], function(require){ 
 		 	mocha.setup("bdd");  
-		 	require( ["test/js/utils/utils.spec"] , function(BaseSpec){  
+		 	require( ["test/js/utils/_.spec"] , function(BaseSpec){  
 		 		if (window.mochaPhantomJS) {   
 					mochaPhantomJS.run();  
 		 		}else {  

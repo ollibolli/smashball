@@ -1,5 +1,5 @@
-define(['smashball/Base'],function(Base){
-
+define(['utils/_','smashball/Base'],function(_, Base){
+    'use strict';
     Venue.Extend(Base);
 
     /**
@@ -7,10 +7,10 @@ define(['smashball/Base'],function(Base){
      * @param graphic [smashball/Graphic]
      */
     function Venue(graphic){
+        _.assertParam(graphic,'smashball/Graphic');
         this.Super();
         this._entityPool = {};
-        this.assert(this.instanceOf(graphic,'smashball/Graphic'), new TypeError ('Not a [smashball/Graphic]'));
-        this._graphic=graphic;
+        this._graphic = graphic;
     };
 
     /**
@@ -19,7 +19,7 @@ define(['smashball/Base'],function(Base){
      * @return id [Number]
      */
     Venue.prototype.addEntity = function(entity){
-        this.assert(this.instanceOf(entity, 'smashball/Entity'), new TypeError ('Not a [smashball/Entity] object'));
+        _.assertParam(entity, 'smashball/Entity');
         this._entityPool[entity.id] = entity;
     };
 
@@ -39,18 +39,18 @@ define(['smashball/Base'],function(Base){
     Venue.prototype.removeEntityById = function(id){
         return null;
     };
-
-    /**
-     *
-     * @param entity
-     */
-    Venue.prototype.addToScene = function(entity){
-        return null;
-    };
-
-    Venue.prototype.removeFromScene = function(entity){
-        return null;
-    };
+//
+//    /**
+//     *
+//     * @param entity
+//     */
+//    Venue.prototype.addToStage = function(entity){
+//        return null;
+//    };
+//
+//    Venue.prototype.removeFromStage = function(entity){
+//        return null;
+//    };
 
     Venue.prototype.getEntitiesByName = function(name){
         return null;
@@ -81,10 +81,9 @@ define(['smashball/Base'],function(Base){
     Venue.prototype.resetScene = function(){
     };
 
-
-    /**
-     * "Static" functions
-     */
+    Venue.prototype.getGraphic = function(){
+         return this._graphic;
+    }
 
     return Venue
 });

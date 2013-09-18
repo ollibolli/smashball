@@ -39,11 +39,11 @@ define([
             });
         });
         describe('addEntity(entity) ,getEntity(entity)',function(){
-            var v,
-                e;
-            e = new Entity('test-name');
 
             it('should throw error if parameter is not instance of [smashball/Entity]', function(){
+                var v,
+                    e;
+                e = new Entity('test-name');
 
                 expect(function() {
                     v = new Venue(new Graphic())
@@ -57,35 +57,58 @@ define([
             });
 
             it('should add the entity to a pool', function() {
+                var v,
+                    e;
+                e = new Entity('test-name');
                 v = new Venue(new Graphic());
                 v.addEntity(e);
                 expect(v._entityPool[e.id]).to.equals(e);
             });
+            it('Should activate the entities subscriptions',function(){
+                var v,
+                    e;
+                e = new Entity('test-name');
+                e.
+                v = new Venue(new Graphic());
+                v.addEntity(e);
+                expect(v).to.equals(e);
+
+            });
         });
-        describe('removeEntity(entity)',function(){
+        describe.skip('removeEntity(entity)',function(){
             it('',function(){
 
             });
         });
-        describe('removeEntityById()',function(){
+        describe.skip('removeEntityById()',function(){
             it('_',function(){
 
             });
         });
-        describe('setScene(scene)',function(){
+        describe.skip('setScene(scene)',function(){
             it('_',function(){
 
             });
         });
-        describe('initScene()',function(){
+        describe.skip('initScene()',function(){
             it('',function(){
 
             });
         });
-        describe('resetScene()',function(){
+        describe.skip('resetScene()',function(){
             it('_',function(){
 
             });
         });
+        describe('addToStage([smashball/Entity])',function(){
+            it('should activate the subscriptions for entity',function(){
+                var venue = new Venue(new Graphic());
+                var entity = new Entity('name');
+                entity.subs
+                venue.addEntity(entity);
+                venue.addToStage(entity);
+                expect()
+            });
+        })
     });
 });

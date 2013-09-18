@@ -24,7 +24,7 @@
 		 	mocha.setup("bdd");  
 		 	require( ["test/js/smashball/comp/Renderable.spec"] , function(BaseSpec){  
 		 		if (window.mochaPhantomJS) {   
-		 			mochaPhantomJS.run();  
+					mochaPhantomJS.run();  
 		 		}else {  
 		 			mocha.setup({reporter:"html"});  
 		 			mocha.run();  

@@ -1,4 +1,4 @@
-define(['smashball/Base'],function(Base){
+define(['utils/_','smashball/Base'],function(_, Base){
 
     Graphic.Extend(Base);
 
@@ -15,7 +15,7 @@ define(['smashball/Base'],function(Base){
      * @param depth
      */
     Graphic.factory = function(string,element,width,height,depth){
-        this.assert(Graphic.factory[string]);
+        _.assert(Graphic.factory[string]);
         var graphic = Graphic.factory[string](element,width,height,depth);
         graphic.graphicType = string;
         return graphic;
