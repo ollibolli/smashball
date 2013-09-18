@@ -5,7 +5,7 @@ require([
         'smashball/keyboard',
         'smashball/Venue',
         'smashball/Graphic',
-        'smashball/comp/Rendable'
+        'smashball/comp/Render'
     ], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable) {
         var gameloop,
             eventBus,

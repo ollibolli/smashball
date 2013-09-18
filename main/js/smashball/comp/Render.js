@@ -13,7 +13,7 @@ define(['smashball/comp/Component'],function(Component){
         graphic.context.fill();
       });
       this.entity.subscribeGlobal('gameloop/gameTick', function(type, graphic) {
-        // graphic.context.arc(x, y, 13, 0, 2 * Math.PI, false);
+        graphic.context.arc(x, y, 13, 0, 2 * Math.PI, false);
         x++;
         y++;
       });

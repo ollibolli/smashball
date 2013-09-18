@@ -39,18 +39,18 @@ define(['utils/_','smashball/Base'],function(_, Base){
     Venue.prototype.removeEntityById = function(id){
         return null;
     };
-//
-//    /**
-//     *
-//     * @param entity
-//     */
-//    Venue.prototype.addToStage = function(entity){
-//        return null;
-//    };
-//
-//    Venue.prototype.removeFromStage = function(entity){
-//        return null;
-//    };
+
+    /**
+     *
+     * @param entity
+     */
+    Venue.prototype.addToStage = function(entity){
+        return null;
+    };
+
+    Venue.prototype.removeFromStage = function(entity){
+        return null;
+    };
 
     Venue.prototype.getEntitiesByName = function(name){
         return null;
