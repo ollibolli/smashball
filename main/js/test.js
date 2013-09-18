@@ -18,9 +18,6 @@ require([
                 gameloop.stop();
             }
         });
-        eventBus.subscribe('gameloop/gameTick', function() {
-            console.log('hej');
-        });
 
         venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 500, 500));
 
@@ -32,7 +29,7 @@ require([
         venue.addToStage(ball1);
         gameloop = new Gameloop();
         gameloop.setVenue(venue);
-        gameloop.setFrameRate(2);
+        gameloop.setFrameRate(60);
         gameloop.start();
 
 });

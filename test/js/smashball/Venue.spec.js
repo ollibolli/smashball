@@ -64,11 +64,11 @@ define([
                 v.addEntity(e);
                 expect(v._entityPool[e.id]).to.equals(e);
             });
-            it('Should activate the entities subscriptions',function(){
+            it.skip('Should activate the entities subscriptions',function(){
                 var v,
                     e;
                 e = new Entity('test-name');
-                e.
+                // e.
                 v = new Venue(new Graphic());
                 v.addEntity(e);
                 expect(v).to.equals(e);
@@ -100,15 +100,15 @@ define([
 
             });
         });
-        describe('addToStage([smashball/Entity])',function(){
-            it('should activate the subscriptions for entity',function(){
+        describe('addToStage([smashball/Entity])', function(){
+            it('should activate the subscriptions for entity', function(){
                 var venue = new Venue(new Graphic());
                 var entity = new Entity('name');
-                entity.subs
+                sinon.spy(entity, 'componentsSubscriptions');
                 venue.addEntity(entity);
                 venue.addToStage(entity);
-                expect()
+                expect(entity.componentsSubscriptions.called).to.be.ok;
             });
-        })
+        });
     });
 });

@@ -34,14 +34,20 @@ define(['sinon','chai','smashball/Graphic']
             });
         });
         describe('Graphic.factory.canvas2d(element,width,height)',function(){
-            it('shall return a [smashball/Graphic] object',function(){
-                var graphics = Graphic.factory('canvas2d',document.getElementsByTagName('body')[0],500,534);
-                expect(graphics.canvas instanceof HTMLCanvasElement).to.be.ok;
-                expect(graphics.context instanceof CanvasRenderingContext2D).to.be.ok;
-                expect(graphics.width).to.equal(500);
-                expect(graphics.height).to.equal(534);
+            it('shall return a [smashball/Graphic] object', function(){
+                var graphic = Graphic.factory('canvas2d', document.getElementsByTagName('body')[0],500,534);
+                expect(graphic.canvas instanceof HTMLCanvasElement).to.be.ok;
+                expect(graphic.context instanceof CanvasRenderingContext2D).to.be.ok;
+                expect(graphic.width).to.equal(500);
+                expect(graphic.height).to.equal(534);
+
+            });
+            it('shall implement clear()', function(){
+                var graphic = Graphic.factory('canvas2d', document.getElementsByTagName('body')[0],500.534);
+                expect(graphic).to.have.property('clear');
 
             });
         });
+
     });
 });
