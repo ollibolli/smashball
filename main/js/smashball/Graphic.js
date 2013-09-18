@@ -5,7 +5,12 @@ define(['utils/_','smashball/Base'],function(_, Base){
     function Graphic(){
         this.Super();
     };
-
+    /**
+     * Clear the venues graphic to prepare new render phase.
+     */
+    Graphic.prototype.clear = function() {
+        throw 'Not implemented';
+    }
     /**
      * Creates a graphical object deffining the render strategis
      * @param string
@@ -33,6 +38,9 @@ define(['utils/_','smashball/Base'],function(_, Base){
         graphic.context = graphic.canvas.getContext("2d");
         graphic.canvas.width =  graphic.width = width;
         graphic.canvas.height = graphic.height = height;
+        graphic.clear = function() {
+            graphic.context.clearRect(0, 0, graphic.width, graphic.height);
+        }
         element.appendChild(graphic.canvas);
         return graphic;
     }

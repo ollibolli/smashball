@@ -18,7 +18,7 @@ define(['utils/_',
     };
 
     Entity.prototype.subscribeGlobal = function(event,fn){
-       eventbus.subscribe(event,fn);
+       eventbus.subscribe(event, fn);
     }
 
     Entity.prototype.unsubscribeGlobal = function( tokenOrFunction ){
@@ -26,11 +26,11 @@ define(['utils/_',
     }
 
     Entity.prototype.publishGlobal = function(event,data){
-       eventbus.publish(event,data);
+       eventbus.publish(event, data);
     }
 
     Entity.prototype.publishSyncGlobal = function(event,data){
-       eventbus.publishSync(event,data);
+       eventbus.publishSync(event, data);
     }
 
     Entity.prototype.addComponent = function(component){

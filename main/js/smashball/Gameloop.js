@@ -56,15 +56,14 @@ define([
 
         function onframe(){
             while ((new Date).getTime() > self._startTime) {
-
                 eventBus.publish('gameloop/gameTick');
                 self._startTime += self._skipTicks;
                 self._loops++;
-
             }
 
             if (self._running){
-                eventBus.publish('gameloop/render', self.getVenue().getGraphic());
+                self.getVenue().getGraphic().clear();
+                eventBus.publishSync('gameloop/render', self.getVenue().getGraphic());
                 onframe._id = self._requestAnimationFrame.call(window, onframe);
             } else {
                 self._cancelRequestAnimationFrame.call(window,onframe._id);

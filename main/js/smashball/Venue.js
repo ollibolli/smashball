@@ -45,7 +45,8 @@ define(['utils/_','smashball/Base'],function(_, Base){
      * @param entity
      */
     Venue.prototype.addToStage = function(entity){
-        return null;
+        _.assertParam(entity, 'smashball/Entity');
+        entity.componentsSubscriptions();
     };
 
     Venue.prototype.removeFromStage = function(entity){

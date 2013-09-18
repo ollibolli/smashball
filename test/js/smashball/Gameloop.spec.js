@@ -10,9 +10,9 @@ define([
     var assert = chai.assert;
     var pubsub = smashball.eventBus;
     describe('Gameloop',function(){
-        var gameloop = new Gameloop();
         describe('get/setFrameRate',function(){
             it ('Set and gets the framerate',function(){
+                var gameloop = new Gameloop();
                 var fps = gameloop.getFrameRate();
                 gameloop.setFrameRate(30);
                 expect(gameloop.getFrameRate()).to.equal(30);
@@ -21,6 +21,7 @@ define([
         });
         describe('get/set Venue',function(){
             it ('Set and gets graphic',function(){
+                var gameloop = new Gameloop();
                 var graphic = Graphic.factory('canvas2d', document.createElement('element'), 500, 500);
                 var venue = new Venue(graphic);
                 expect(function(){
@@ -32,8 +33,12 @@ define([
         });
         describe('start',function(){
             it('shoud start sending "gameloop/gameTick" and "gameloop/render" events',function(done){
+                var gameloop = new Gameloop();
+                var graphic = Graphic.factory('canvas2d', document.createElement('element'), 500, 500);
+                var venue = new Venue(graphic);
+                gameloop.setVenue(venue);
 
-
+                sinon.spy(graphic,'clear');
                 var gametickCb = sinon.spy();
                 var renderCb = sinon.spy();
 
@@ -52,6 +57,7 @@ define([
 
                 },100);
             });
+
         });
     })
 });
