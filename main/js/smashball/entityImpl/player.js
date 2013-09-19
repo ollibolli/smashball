@@ -20,7 +20,7 @@ define([
 
     function keyCb(type, keyEvent){
         if (keyEvent.keyCode == keyboard.SPACE){
-            this.publishGlobal('player/fireball',{ x:100, y:250, angle:0, speed: 10 });
+            this.publishGlobal('player/fireball',{ x:100, y:250, angle:0, speed: 2 });
         };
     };
 

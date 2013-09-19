@@ -24,7 +24,5 @@ define([
        _.extend(this, options);
     };
 
-
-
     return new Ball('ball');
 });

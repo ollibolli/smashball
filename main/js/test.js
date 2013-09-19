@@ -47,7 +47,7 @@ require([
 
         gameloop = new Gameloop();
         gameloop.setVenue(venue);
-        gameloop.setFrameRate(2);
+        gameloop.setFrameRate(20);
         gameloop.start();
 
 });
