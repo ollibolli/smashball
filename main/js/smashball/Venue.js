@@ -9,8 +9,9 @@ define(['utils/_','smashball/Base'],function(_, Base){
     function Venue(graphic){
         _.assertParam(graphic,'smashball/Graphic');
         this.Super();
-        this._entityPool = {};
+        this._entityPool = [];
         this._graphic = graphic;
+        this._onStage = [];
     };
 
     /**
@@ -20,7 +21,7 @@ define(['utils/_','smashball/Base'],function(_, Base){
      */
     Venue.prototype.addEntity = function(entity){
         _.assertParam(entity, 'smashball/Entity');
-        this._entityPool[entity.id] = entity;
+        this._entityPool[entity._id] = entity;
     };
 
     /**
@@ -29,7 +30,11 @@ define(['utils/_','smashball/Base'],function(_, Base){
      * @return id [Number]
      */
     Venue.prototype.removeEntity = function(entity){
-        return entity;
+        entity.removeComponentsSubscriptions();
+        if (this.isOnStage(entity)){
+            this.removeFromStage(entity);
+        }
+        this._entityPool = _.omit(this._entityPool, entity.getId());
     };
 
     /**
@@ -47,10 +52,15 @@ define(['utils/_','smashball/Base'],function(_, Base){
     Venue.prototype.addToStage = function(entity){
         _.assertParam(entity, 'smashball/Entity');
         entity.componentsSubscriptions();
+        this._onStage.push(entity);
     };
 
+    Venue.prototype.isOnStage = function(entity){
+        return _.contains(this._onStage,entity);
+    }
+
     Venue.prototype.removeFromStage = function(entity){
-        return null;
+        entity.removeComponentsSubscriptions();
     };
 
     Venue.prototype.getEntitiesByName = function(name){

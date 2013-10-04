@@ -24,11 +24,11 @@ define(['smashball/Entity',
             it('shall take a [String] as first parameter a identifier',function(){
                 expect(function(){
                     var e = new Entity();
-                }).to.throw();
+                }).to.throws();
 
                 expect(function(){
                     var e = new Entity('identifier');
-                }).to.not.throw();
+                }).to.not.throws();
                 var entity= new Entity('test');
                 expect(entity.getId()).to.equal('test');
             });
@@ -95,7 +95,8 @@ define(['smashball/Entity',
         });
 
         describe.skip('subscribeGlobal(event,callback)',function(){
-            it('stub',function(){
+            it('should return a tocken',function(){
+               var e = new Entity();
 
             });
         });
@@ -128,6 +129,19 @@ define(['smashball/Entity',
                 e.addComponent(comp);
                 e.componentsSubscriptions();
                 expect(comp.addSubscriptions.called).to.be.ok;
+            });
+        });
+        describe('removeComponentSubscriptions',function(){
+            it('should call removeSubscriptions on all components',function(){
+                var e = new Entity('test');
+                var comp = new Component();
+                //override
+                comp.removeSubscriptions = function(){};
+                sinon.spy(comp,"removeSubscriptions");
+                e.addComponent(comp);
+                e.removeComponentsSubscriptions();
+                expect(comp.removeSubscriptions.called).to.be.ok;
+
             });
         });
 //        describe.skip ('setVenue(venue)',function(){

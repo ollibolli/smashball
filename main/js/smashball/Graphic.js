@@ -1,5 +1,4 @@
-define(['utils/_','smashball/Base'],function(_, Base){
-
+define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
     Graphic.Extend(Base);
 
     function Graphic(){
@@ -19,7 +18,7 @@ define(['utils/_','smashball/Base'],function(_, Base){
      * @param height
      * @param depth
      */
-    Graphic.factory = function(string,element,width,height,depth){
+    Graphic.factory = function(string,element,width,height,depth,callback){
         _.assert(Graphic.factory[string]);
         var graphic = Graphic.factory[string](element,width,height,depth);
         graphic.graphicType = string;
@@ -36,14 +35,20 @@ define(['utils/_','smashball/Base'],function(_, Base){
         var graphic = new Graphic();
         graphic.canvas = document.createElement("canvas");
         graphic.context = graphic.canvas.getContext("2d");
-        graphic.canvas.width =  graphic.width = width;
+        graphic.canvas.width = graphic.width = width;
         graphic.canvas.height = graphic.height = height;
         graphic.clear = function() {
             graphic.context.clearRect(0, 0, graphic.width, graphic.height);
-        }
+        };
         element.appendChild(graphic.canvas);
         return graphic;
-    }
+    };
+
+    Graphic.factory.svg2d = function svg2d(element,width,height){
+        var graphic = new Graphic();
+        graphic.svg = raphael.paper();
+
+    };
 
     return Graphic;
 });

@@ -87,8 +87,12 @@ define(function(){
                     case 'Boolean': return typeof(object) === 'boolean' || object instanceof Boolean;
                     default :
                         var type;
-                        eval ('type = '+requireId);
-                        return object instanceof type;
+                        try {
+                            eval ('type = '+requireId);
+                            return object instanceof type;
+                        }catch (e){
+                            return false;
+                        }
                 }
                 return false;
             }

@@ -18,37 +18,47 @@ define(['utils/_',
     };
 
     Entity.prototype.subscribeGlobal = function(event,fn){
-       eventbus.subscribe(event, fn);
-    }
+       return eventbus.subscribe(event, fn);
+    };
 
     Entity.prototype.unsubscribeGlobal = function( tokenOrFunction ){
-       eventbus.unsubscribe(tokenOrFunction);
-    }
+       return eventbus.unsubscribe(tokenOrFunction);
+    };
 
     Entity.prototype.publishGlobal = function(event,data){
-       eventbus.publish(event, data);
-    }
+       return eventbus.publish(event, data);
+    };
 
     Entity.prototype.publishSyncGlobal = function(event,data){
-       eventbus.publishSync(event, data);
-    }
+       return eventbus.publishSync(event, data);
+    };
 
     Entity.prototype.addComponent = function(component){
         _.assertParam(component,'smashball/comp/Component');
         this._components[util.getNameOf(component)] = component;
         component.setEntity(this);
-    }
+    };
+
+    Entity.prototype.getComponents = function(){
+        return this._components
+    };
 
     Entity.prototype.removeComponent = function(component){
         _.assertParam(component,'smashball/comp/Component');
         component.removeSubscriptions();
-    }
+    };
 
     Entity.prototype.componentsSubscriptions = function(){
         for (var key in this._components){
             this._components[key].addSubscriptions();
         }
-    }
+    };
+
+    Entity.prototype.removeComponentsSubscriptions = function(){
+        for (var key in this._components){
+            this._components[key].removeSubscriptions();
+        }
+    };
 
 //    Entity.prototype.setVenue = function (venue){
 //        this._venue=venue;
@@ -56,7 +66,8 @@ define(['utils/_',
 
     Entity.prototype.getId = function (){
         return this._id;
-    }
+    };
+
 
     return Entity;
 });

@@ -9,7 +9,7 @@ define(['smashball/comp/Component'],function(Component){
 
     /* override */
     UserControl.prototype.addSubscriptions = function(){
-        this.entity.subscribeGlobal('keyboard/keydown',this._keyEventCb);
+        this._entity.subscribeGlobal('keyboard/keydown',this._keyEventCb);
     };
 
 

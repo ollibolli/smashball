@@ -3,13 +3,15 @@ define([
     'chai',
     'smashball/Entity',
     'smashball/Graphic',
-    'smashball/Venue'
+    'smashball/Venue',
+    'utils/_'
 ],function(
     sinon,
     chai,
     Entity,
     Graphic,
-    Venue
+    Venue,
+    _
 ){
     var expect = chai.expect;
     var assert = chai.assert;
@@ -23,15 +25,15 @@ define([
                 var v;
                 expect(function() {
                     v = new Venue();
-                }).to.throw();
+                }).to.throws();
 
                 expect(function() {
                     v = new Venue({});
-                }).to.throw();
+                }).to.throws();
 
                 expect(function() {
                     v = new Venue(graphic);
-                }).not.to.throw();
+                }).not.to.throws();
             });
             it('should have a entityPool propertie of type Object "{}" ', function() {
                 var v = new Venue(new Graphic());
@@ -62,22 +64,7 @@ define([
                 e = new Entity('test-name');
                 v = new Venue(new Graphic());
                 v.addEntity(e);
-                expect(v._entityPool[e.id]).to.equals(e);
-            });
-            it.skip('Should activate the entities subscriptions',function(){
-                var v,
-                    e;
-                e = new Entity('test-name');
-                // e.
-                v = new Venue(new Graphic());
-                v.addEntity(e);
-                expect(v).to.equals(e);
-
-            });
-        });
-        describe.skip('removeEntity(entity)',function(){
-            it('',function(){
-
+                expect(v._entityPool[e._id]).to.equals(e);
             });
         });
         describe.skip('removeEntityById()',function(){
@@ -108,6 +95,45 @@ define([
                 venue.addEntity(entity);
                 venue.addToStage(entity);
                 expect(entity.componentsSubscriptions.called).to.be.ok;
+            });
+        });
+        describe('isOnStage(entity)',function(){
+            it('should check if entity is on stage',function(){
+                var venue = new Venue(new Graphic());
+                var entity = new Entity('name');
+                expect(venue.isOnStage(entity)).not.to.be.ok;
+                venue.addEntity(entity);
+                expect(venue.isOnStage(entity)).not.to.be.ok;
+                venue.addToStage(entity);
+                expect(venue.isOnStage(entity)).to.be.ok;
+
+            });
+        });
+        describe('removeFromStage([smashball/Entity])',function(){
+            it('should remove the entitiy subscriptions by calling entity.removeSubscriptions',function(){
+                var venue = new Venue(new Graphic());
+                var entity = new Entity('name');
+                sinon.spy(entity, 'removeComponentsSubscriptions');
+                venue.addEntity(entity);
+                venue.addToStage(entity);
+                venue.removeFromStage(entity);
+                expect(entity.removeComponentsSubscriptions.called).to.be.ok;
+
+            });
+        });
+        describe('removeEntity(Entity)',function(){
+            it('should remove the entity from stage by deleting the events subscription and remove from pool',function(){
+                var venue = new Venue(new Graphic());
+                var entity = new Entity('backara');
+                sinon.spy(entity, 'removeComponentsSubscriptions');
+                venue.addEntity(entity);
+                venue.addToStage(entity);
+                venue.removeEntity(entity);
+
+                expect(entity.removeComponentsSubscriptions.called).to.be.ok;
+                console.log(venue._entityPool);
+                expect(_.contains(venue._entityPool, entity)).not.to.be.ok;
+
             });
         });
     });

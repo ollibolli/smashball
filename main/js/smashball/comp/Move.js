@@ -4,18 +4,25 @@ define([
     'use strict';
     Move.Extend(Component);
 
-    function Move(){
+    function Move(moveCb){
         this.Super();
+        this._moveCb = moveCb;
     };
 
     /*override*/
     Move.prototype.addSubscriptions = function(){
-        var entity = this.entity;
-        this.entity.subscribeGlobal('gameloop/gameTick',function(type,event){
-            console.log(entity.x);
-            entity.x = entity.x + entity.speed;
-        });
-    }
+        var entity = this._entity;
+        this._tokens['gameloop/gameTick'] = this._entity.subscribeGlobal('gameloop/gameTick',this._moveCb.bind(this));
+    };
+
+    /*override*/
+    Move.prototype.removeSubscriptions = function(){
+        var entity = this._entity;
+        this._entity.subscribeGlobal(this._tokens['gameloop/gameTick']);
+    };
+    Move.prototype.setVelocity = function(vector){
+        this._velocity = vector;
+    };
 
     return Move;
 });
