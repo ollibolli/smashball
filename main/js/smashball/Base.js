@@ -12,8 +12,9 @@ define(['utils/_'],function(_){
      * By calling Super, every constructor in the prototype chain is applied on the new object
      *
      */
-    Base.prototype.Super = function(){
-        this.$.constructor.apply(this.$,arguments);
+    Base.Super = function(){
+        //this.$.constructor.apply(this.$, arguments);
+        this.prototype.constructor.call();
     };
 
     /**

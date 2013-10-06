@@ -8,7 +8,7 @@ define(['smashball/Base'],function(Base){
     Scene.Extend(Base);
 
     function Scene(){
-        this.Super();
+        Base.prototype.constructor.call(this);
     };
 
     /**

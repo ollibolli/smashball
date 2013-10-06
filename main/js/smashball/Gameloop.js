@@ -10,7 +10,7 @@ define([
     var eventBus = smashball.eventBus;
 
     function Gameloop(){
-        this.Super();
+        Base.prototype.constructor.call(this);
         this._fps = 60;
         this._running = false;
         this._loops = 0;

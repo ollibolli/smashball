@@ -1,7 +1,7 @@
 define(['smashball/comp/Component'],function(Component){
     'use strict';
     var UserControl = function UserControl(keyEventCb){
-        this.Super();
+        Component.prototype.constructor.call();
         this._keyEventCb = keyEventCb;
     };
 

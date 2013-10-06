@@ -5,7 +5,7 @@ define([
     Vector.Extend(Base);
 
     function Vector(x,y){
-        this.Super();
+        Base.prototype.constructor.call(this);
         this.x = x;
         this.y = y;
     };

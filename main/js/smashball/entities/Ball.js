@@ -11,11 +11,11 @@ define([
     Ball.Extend(Entity);
 
     function Ball(id){
-        this.Super(id);
-        var self = this;
+        Entity.prototype.constructor.call(this, id);
         this.addComponent(new Pos(new Vector(100,250)));
         this.addComponent(new Render(Ball.renderCb));
         this.addComponent(new Move(Ball.moveCb));
+        this.test = "test";
     };
 
     Ball.prototype.setOptions = function(options){
@@ -24,8 +24,8 @@ define([
 
     Ball.renderCb = function(type, graphic){
         graphic.context.beginPath();
-        graphic.context.arc(this._pos.x,this._pos.y,13,0,2*Math.PI,false);
-        graphic.context.fillStyle = "#333";
+        graphic.context.arc(this._pos.x,this._pos.y,10,0,2*Math.PI,false);
+        graphic.context.fillStyle = "#555";
         graphic.context.fill();
     };
 

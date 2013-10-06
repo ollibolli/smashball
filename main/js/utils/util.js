@@ -17,6 +17,11 @@ define(function(){
             sub.name = 'Proto'+base.name || 'Anonymous'
         }
 
+        for (var key in base) {
+            if ({}.hasOwnProperty.call(parent, key)){
+              sub[key] = base[key];
+            }
+        }
         //using a surrogate constructor to prevent the using the new on the
         var surrogateConstructor;
         eval('surrogateConstructor = function '+ sub.name + '(){}');
@@ -24,6 +29,8 @@ define(function(){
         sub.prototype = new surrogateConstructor();
         sub.prototype.constructor = sub;
         sub.prototype.$ = base.prototype;
+        sub.prototype._Super = base.prototype.constructor;
+
     };
 
     util.Mixin = function mixin(target,object,allowOverride){

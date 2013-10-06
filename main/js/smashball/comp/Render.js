@@ -8,9 +8,8 @@ define([
     Render.Extend(Component);
 
     function Render(renderFn){
-       // _.assertParam('Function');
+        Component.prototype.constructor.call(this);
         this._renderEventCb = renderFn;
-        this.Super();
         this._pos = new Vector(0,0);
     }
 
@@ -29,10 +28,10 @@ define([
 
     Render.prototype.removeSubscriptions = function() {
       if (!this._entity.unsubscribe(this._tokens['pos/posChanged'])){
-            throw new Error("[Render] Unable to remove subscription 'pos/posChanged'");
+            console.log("[Render] Unable to remove subscription 'pos/posChanged'");
       };
       if (!this._entity.unsubscribeGlobal(this._tokens['gameloop/render'])){
-          throw new Error("[Render] Unable to remove subscription 'gameloop/render'");
+          console.log("[Render] Unable to remove subscription 'gameloop/render'");
       };
     };
     Render.posChangedCb = function(type,posVector){

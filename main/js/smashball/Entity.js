@@ -10,7 +10,7 @@ define(['utils/_',
 
     function Entity(id){
         _.assertParam(id,'String');
-        this.Super();
+        Base.prototype.constructor.call(this);
         this.mixin(new _Pubsub(),true);
         this._id = id;
         this._components = {};

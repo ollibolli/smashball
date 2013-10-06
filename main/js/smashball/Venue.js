@@ -7,11 +7,11 @@ define(['utils/_','smashball/Base'],function(_, Base){
      * @param graphic [smashball/Graphic]
      */
     function Venue(graphic){
+        Base.prototype.constructor.call(this);
         _.assertParam(graphic,'smashball/Graphic');
-        this.Super();
-        this._entityPool = [];
+        this._entityPool = {};
         this._graphic = graphic;
-        this._onStage = [];
+        this._onStage = {};
     };
 
     /**
@@ -52,7 +52,7 @@ define(['utils/_','smashball/Base'],function(_, Base){
     Venue.prototype.addToStage = function(entity){
         _.assertParam(entity, 'smashball/Entity');
         entity.componentsSubscriptions();
-        this._onStage.push(entity);
+        this._onStage[entity._id] = entity;
     };
 
     Venue.prototype.isOnStage = function(entity){

@@ -9,9 +9,10 @@ require([
     'smashball/entities/player',
     'smashball/entities/opponent',
     'smashball/entities/board',
-    'smashball/entities/Ball'
+    'smashball/entities/Ball',
+    'utils/Vector'
 
-], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable, player, opponent, board, Ball) {
+], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable, player, opponent, board, Ball, Vendor) {
     var gameloop,
         eventBus,
         venue,
@@ -27,9 +28,9 @@ require([
     venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 700, 500));
 
     //move to a scene//
-//        var ball1 = new Entity('ball1');
-//        var render = new Rendable();
-//        ball1.addComponent(render);
+    var ball1 = new Entity('ball1');
+    var render = new Rendable();
+    ball1.addComponent(render);
     venue.addEntity(player);
     venue.addToStage(player);
     venue.addEntity(opponent);
@@ -46,11 +47,10 @@ require([
         venue.addEntity(ball);
         venue.addToStage(ball);
     });
+
     smashball.eventBus.subscribe('pos/outsideBoundery',function(type,entity){
         venue.removeEntity(entity);
-        console.log(smashball);
     });
-
 
     gameloop = new Gameloop();
     gameloop.setVenue(venue);

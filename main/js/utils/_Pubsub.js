@@ -13,7 +13,7 @@ https://github.com/mroderick/PubSubJS
 	require,
 	window
 */
-
+var i = 0;
 (function(root, factory){
 	'use strict';
 
@@ -24,11 +24,9 @@ https://github.com/mroderick/PubSubJS
 }( ( typeof window === 'object' && window ) || this, function(){
 
 	'use strict';
-	
-	var PubSub = {
-			name: 'PubSubJS',
-			version: '1.3.3'
-		},
+    var index = i;
+    i++;
+	var PubSub = {},
 		messages = {},
 		lastUid = -1;
 
@@ -142,7 +140,7 @@ https://github.com/mroderick/PubSubJS
 	 *	Subscribes the passed function to the passed message. Every returned token is unique and should be stored if 
 	 *	you need to unsubscribe
 	**/
-	PubSub.subscribe = function( message, func ){
+	PubSub.subscribe = function( message, func ,extra){
 		// message is not registered yet
 		if ( !messages.hasOwnProperty( message ) ){
 			messages[message] = [];
@@ -163,7 +161,8 @@ https://github.com/mroderick/PubSubJS
 	 *  Unsubscribes a specific subscriber from a specific message using the unique token 
 	 *  or if using Function as argument, it will remove all subscriptions with that function	
 	**/
-	PubSub.unsubscribe = function( tokenOrFunction ){
+	PubSub.unsubscribe = function( tokenOrFunction ,extra){
+        console.log('remove',messages,tokenOrFunction,index,extra);
 		var isToken = typeof tokenOrFunction === 'string',
 			key = isToken ? 'token' : 'func',
 			succesfulReturnValue = isToken ? tokenOrFunction : true,

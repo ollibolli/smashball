@@ -5,6 +5,7 @@ define([
     Pos.Extend(Component);
 
     function Pos(vector){
+        Component.prototype.constructor.call(this);
         _.assertParam(vector,'utils/Vector');
         this._pos = vector;
         this._tokens = {};
@@ -12,14 +13,13 @@ define([
 
     /*override*/
     Pos.prototype.addSubscriptions = function(){
-        this._tokens['move/posDelta'] = this._entity.subscribe('move/posDelta',Pos.posDeltaCb.bind(this));
+        this._tokens['move/posDelta'] = this._entity.subscribe('move/posDelta',Pos.posDeltaCb.bind(this),this._entity);
     };
 
     /*override*/
     Pos.prototype.removeSubscriptions = function(){
-        console.log(this._entity);
-        if (! this._entity.unsubscribe(this._tokens['move/posDelta'])){
-            throw new Error("Pos unable to remove Subscriptions");
+        if (! this._entity.unsubscribe(this._tokens['move/posDelta']),this._entity){
+            console.log("Pos unable to remove Subscriptions 'move/posDelta'");
         };
     };
 

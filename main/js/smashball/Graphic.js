@@ -2,7 +2,7 @@ define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
     Graphic.Extend(Base);
 
     function Graphic(){
-        this.Super();
+        Base.prototype.constructor.call(this);
     };
     /**
      * Clear the venues graphic to prepare new render phase.

@@ -5,7 +5,7 @@ define([
     Component.Extend(Base);
 
     function Component(){
-        this.Super();
+        Base.prototype.constructor.call();
         this._entity = null;
         this._dependencies = [];
         this._tokens = {};

@@ -5,7 +5,7 @@ define([
     Collision.Extend(Component);
 
     function Collision(elasticity,velocityX,velocityY){
-      this.Super();
+      Component.prototype.constructor.call();
       this._dependencies = ['smashball/comp/Pos'];
       this.velocity = new Vector(velocityX || 0, velocityY || 0); // velocity: m/s^2
       this.mass = 10;

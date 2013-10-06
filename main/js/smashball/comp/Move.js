@@ -5,7 +5,7 @@ define([
     Move.Extend(Component);
 
     function Move(moveCb){
-        this.Super();
+        Component.prototype.constructor.call(this);
         this._moveCb = moveCb;
     };
 
@@ -17,8 +17,9 @@ define([
 
     /*override*/
     Move.prototype.removeSubscriptions = function(){
-        var entity = this._entity;
-        this._entity.subscribeGlobal(this._tokens['gameloop/gameTick']);
+        if (!this._entity.unsubscribeGlobal(this._tokens['gameloop/gameTick'])){
+          console.log('Subscription "gameloop/gameTick" in Move" could not be removeed');
+        };
     };
     Move.prototype.setVelocity = function(vector){
         this._velocity = vector;
