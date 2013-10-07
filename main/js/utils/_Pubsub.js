@@ -13,7 +13,6 @@ https://github.com/mroderick/PubSubJS
 	require,
 	window
 */
-var i = 0;
 (function(root, factory){
 	'use strict';
 
@@ -24,8 +23,6 @@ var i = 0;
 }( ( typeof window === 'object' && window ) || this, function(){
 
 	'use strict';
-    var index = i;
-    i++;
 	var PubSub = {},
 		messages = {},
 		lastUid = -1;
@@ -162,7 +159,6 @@ var i = 0;
 	 *  or if using Function as argument, it will remove all subscriptions with that function	
 	**/
 	PubSub.unsubscribe = function( tokenOrFunction ,extra){
-        console.log('remove',messages,tokenOrFunction,index,extra);
 		var isToken = typeof tokenOrFunction === 'string',
 			key = isToken ? 'token' : 'func',
 			succesfulReturnValue = isToken ? tokenOrFunction : true,

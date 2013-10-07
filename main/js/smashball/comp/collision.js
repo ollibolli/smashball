@@ -4,14 +4,19 @@ define([
     'use strict';
     Collision.Extend(Component);
 
-    function Collision(elasticity,velocityX,velocityY){
-      Component.prototype.constructor.call();
+    function Collision(elasticity,velocity){
+      Component.prototype.constructor.call(this);
       this._dependencies = ['smashball/comp/Pos'];
-      this.velocity = new Vector(velocityX || 0, velocityY || 0); // velocity: m/s^2
-      this.mass = 10;
-      this.radius = 15;
+      this._velocity = velocity; // velocity: m/s^2
+      this._mass = 10;
+      this._radius = 10;
       this._pos = new Vector(0, 0);
       this.elasticity = elasticity;
+    };
+
+    /*override*/
+    Collision.prototype.addSubscriptions = function(){
+
     };
 
     Collision.prototype.collide = function(collisonComponent) {
@@ -26,7 +31,7 @@ define([
       }
 
       // sum the masses, normalize the collision vector and get its tangential
-      sm = this.mass + obj.mass;
+      sm = this._mass + obj.mass;
       dn.normalize();
       dt = new Vector(dn.y, -dn.x);
 

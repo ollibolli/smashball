@@ -22,7 +22,7 @@ define([
       this._tokens['pos/posChanged'] = this._entity.subscribe('pos/posChanged',Render.posChangedCb.bind(this));
     };
     /**
-     * Add subscriptions, global or within entity
+     * Remove subscriptions, global or within entity
      */
     /*override*/
 

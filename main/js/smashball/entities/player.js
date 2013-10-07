@@ -15,7 +15,7 @@ define([
 
     function keyEventCb(type, keyEvent){
         if (keyEvent.keyCode == keyboard.SPACE){
-            this.publishGlobal('player/fireball', { pos : new Vector(100,250), velocity : new Vector(5,0)});
+            this.publishGlobal('player/fireball', { pos : new Vector(100,250), velocity : new Vector(Math.random()*5+1,Math.random()*2-1)});
         };
     };
 

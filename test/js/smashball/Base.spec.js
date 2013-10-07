@@ -53,7 +53,7 @@ define(['smashball/Base','chai'],function(Base,chai){
         describe('Extend',function(){
             it('inherit functionality ',function(){
                 function Obj(){
-                    this.Super();
+                    Base.prototype.constructor.call(this);
                     this.fn1 = function(){};
                     this.member = 'string';
                 }
@@ -72,7 +72,7 @@ define(['smashball/Base','chai'],function(Base,chai){
                 }
                 Parent.Extend(Base);
                 function Child(){
-                    this.Super();
+                    Base.prototype.constructor.call(this);
                 }
                 Child.Extend(Parent);
                 var child = new Child();

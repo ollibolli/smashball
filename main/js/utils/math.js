@@ -2,7 +2,7 @@ define([
 
 ],function(){
     'use strict';
-    math ={};
+    var math ={};
 
     math.keneticEnergy = function(mass,velocity){
         return Math.pow(0.5*mass*velocity,2);

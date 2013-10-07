@@ -41,8 +41,7 @@ require([
     //move to game logic
     var ballIndex= 0;
     smashball.eventBus.subscribe('player/fireball',function(type,options){
-        var ball = new Ball('ball'+ballIndex);
-        ball.setOptions(options);
+        var ball = new Ball('ball'+ballIndex,options.pos,options.velocity);
         ballIndex++;
         venue.addEntity(ball);
         venue.addToStage(ball);

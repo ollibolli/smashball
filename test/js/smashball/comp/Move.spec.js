@@ -13,8 +13,8 @@ define([
     describe('Move',function(){
 
         describe('implement addSubscriptions()',function(){
-            var move = new Move();
             it ('should add listen to global gameloop/gameTick events',function(done){
+                var move = new Move(function(){done()});
                 var e = new Entity('identi');
                 move.setEntity(e);
                 move.addSubscriptions();
@@ -22,6 +22,7 @@ define([
 
             });
             it ('should add listen to "pos/posChanged" events',function(done){
+                var move = new Move(function(){done()});
                 var e = new Entity('identi');
                 move.setEntity(e);
                 move.addSubscriptions();

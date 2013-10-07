@@ -29,7 +29,6 @@ define(function(){
         sub.prototype = new surrogateConstructor();
         sub.prototype.constructor = sub;
         sub.prototype.$ = base.prototype;
-        sub.prototype._Super = base.prototype.constructor;
 
     };
 
