@@ -15,7 +15,11 @@ define([
     };
 
     Vector.prototype.length = function() {
-      return Math.sqrt(this.x * this.x + this.y * this.y);
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+
+    Vector.prototype.length2 = function() {
+      return this.x * this.x + this.y * this.y ;
     };
 
     Vector.prototype.normalize = function() {
@@ -26,7 +30,9 @@ define([
     };
 
     Vector.prototype.multiply = function(s) {
-      return new Vector(this.x * s, this.y * s);
+      this.x *= s;
+      this.y *= s;
+      return this;
     };
 
     Vector.prototype.tx = function(v) {
@@ -35,6 +41,11 @@ define([
         return this;
     };
 
+    Vector.prototype.subTx = function(v) {
+        this.x -= v.x;
+        this.y -= v.y;
+        return this;
+    };
 
     return Vector;
 });

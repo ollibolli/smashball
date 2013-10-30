@@ -8,7 +8,7 @@ define([
 
     board.addComponent(new Render(function(type, graphic){
         graphic.context.beginPath();
-        graphic.context.rect(100, 50, 500, 400);
+        graphic.context.rect(0, 0, 400, 400);
         graphic.context.fillStyle = "#eee";
         graphic.context.fill();
     }));

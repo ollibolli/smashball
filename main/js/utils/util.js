@@ -12,23 +12,25 @@ define(function(){
         return (results && results.length > 1) ? results[1] : "";
     };
 
+    /**
+     * sub inherites from base and fix the prototype chain
+     * adds a property _super_ on sub that references to the Base prototype obj
+     * it also give sub a name.
+     * @param base
+     * @param sub
+     */
     util.Extend = function(base, sub){
         if (!sub.name){
             sub.name = 'Proto'+base.name || 'Anonymous'
         }
 
-        for (var key in base) {
-            if ({}.hasOwnProperty.call(parent, key)){
-              sub[key] = base[key];
-            }
-        }
         //using a surrogate constructor to prevent the using the new on the
         var surrogateConstructor;
         eval('surrogateConstructor = function '+ sub.name + '(){}');
         surrogateConstructor.prototype = base.prototype;
         sub.prototype = new surrogateConstructor();
         sub.prototype.constructor = sub;
-        sub.prototype.$ = base.prototype;
+        sub._super_ = base.prototype;
 
     };
 
@@ -70,8 +72,12 @@ define(function(){
         }
     };
 
-    util.assertParam = function(param,requireId){
-        return util.assert(util.instanceOf(param,requireId), new TypeError('Parameter error: expected [' + requireId + '] got ' + param))
+    util.assertParam = function(param, requireId, obj){
+        var msg = 'Parameter error: expected [' + requireId + '] got ';
+        msg += param ? param.toString : param;
+        msg += ' in ';
+        msg += obj ? obj.toString() : '?';
+        return util.assert(util.instanceOf(param,requireId), new TypeError(msg))
     }
 
     util.instanceOf = function instanceOf(object, requireId){
@@ -82,8 +88,9 @@ define(function(){
 
         if (typeof requireId === 'string'){
             try {
-                if(object instanceof require(requireId)){
-                    return true;
+                var required = require(requireId);
+                if(object instanceof required){
+                     return true;
                 }
             } catch (e){
                 switch(requireId){
@@ -105,6 +112,7 @@ define(function(){
         } else {
            return object instanceof requireId
         }
+        return false;
     };
 
     return util;

@@ -38,7 +38,11 @@ define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
         graphic.canvas.width = graphic.width = width;
         graphic.canvas.height = graphic.height = height;
         graphic.clear = function() {
-            graphic.context.clearRect(0, 0, graphic.width, graphic.height);
+            if(graphic.backgroundImage){
+                graphic.context.drawImage(graphic.backgroundImage,0,0);
+            }else {
+                graphic.context.clearRect(0, 0, graphic.width, graphic.height);
+            }
         };
         element.appendChild(graphic.canvas);
         return graphic;

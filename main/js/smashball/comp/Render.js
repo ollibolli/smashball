@@ -8,7 +8,7 @@ define([
     Render.Extend(Component);
 
     function Render(renderFn){
-        Component.prototype.constructor.call(this);
+        Render._super_.constructor.call(this);
         this._renderEventCb = renderFn;
         this._pos = new Vector(0,0);
     }

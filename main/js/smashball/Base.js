@@ -7,17 +7,6 @@ define(['utils/_'],function(_){
     function Base(){};
 
     /**
-     * A function equal to super. use this only in constructor Functions
-     * Important to always call Super in the extended constructor function.
-     * By calling Super, every constructor in the prototype chain is applied on the new object
-     *
-     */
-    Base.Super = function(){
-        //this.$.constructor.apply(this.$, arguments);
-        this.prototype.constructor.call();
-    };
-
-    /**
      * @return the name of the constructor function that created the obj
      */
     Base.prototype.getNameOfInstance = function (){
@@ -43,6 +32,10 @@ define(['utils/_'],function(_){
     };
 
     Base.prototype.assert = _.assert;
+
+    Base.prototype.toString = function(){
+      return '[object '+this.getNameOfInstance()+']';
+    };
 
 
     /**

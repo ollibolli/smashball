@@ -5,7 +5,7 @@ define([
     Pos.Extend(Component);
 
     function Pos(vector){
-        Component.prototype.constructor.call(this);
+        Pos._super_.constructor.call(this);
         _.assertParam(vector,'utils/Vector');
         this._pos = vector;
         this._tokens = {};
@@ -13,7 +13,7 @@ define([
 
     /*override*/
     Pos.prototype.addSubscriptions = function(){
-        this._tokens['move/posDelta'] = this._entity.subscribe('move/posDelta',Pos.posDeltaCb.bind(this),this._entity);
+        this._tokens['move/posDelta'] = this._entity.subscribe('move/posDelta',Pos.posDeltaCb.bind(this));
     };
 
     /*override*/
@@ -26,7 +26,7 @@ define([
     Pos.prototype.setPos = function(vector){
         _.assertParam(vector,'utils/Vector');
         this._pos = vector;
-        if (vector.x > 590 || vector.y > 460 || vector.x < 100 || vector.y < 50){
+        if (( 190 < vector.x && vector.x < 210 && 190 < vector.y && vector.y < 210) || vector.x > 400 || vector.y > 400 || vector.x < 0 || vector.y < 0 ){
             this._entity.publishGlobal('pos/outsideBoundery',this._entity);
         }else{
             this._entity.publish('pos/posChanged',vector);

@@ -5,7 +5,7 @@ define([
     Component.Extend(Base);
 
     function Component(){
-        Base.prototype.constructor.call();
+        Component._super_.constructor.call(this);
         this._entity = null;
         this._dependencies = [];
         this._tokens = {};
@@ -17,6 +17,10 @@ define([
     Component.prototype.setEntity = function(entity){
         _.assertParam(entity,'smashball/Entity');
         this._entity = entity || null;
+    };
+
+    Component.prototype.getEntity = function(){
+        return this._entity;
     };
 
     /**

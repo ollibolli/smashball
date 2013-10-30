@@ -9,13 +9,15 @@ define([
 
     var player = new Entity('player');
 
-    player.addComponent(new Render(renderEventCb.bind(player)));
+//    player.addComponent(new Render(renderEventCb.bind(player)));
 
     player.addComponent(new UserControl(keyEventCb.bind(player)));
 
     function keyEventCb(type, keyEvent){
         if (keyEvent.keyCode == keyboard.SPACE){
-            this.publishGlobal('player/fireball', { pos : new Vector(100,250), velocity : new Vector(Math.random()*5+1,Math.random()*2-1)});
+            var rand = Math.random,
+                power = 2;
+            this.publishGlobal('player/fireball', { pos : new Vector(rand()*400,rand()*400), velocity : new Vector((rand()-0.5)*power,(rand()-0.5)*power)});
         };
     };
 

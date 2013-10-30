@@ -28,7 +28,7 @@ define([
 
             });
         });
-        describe('instanceOf(object,requireId)',function(){
+        describe('instanceOf(object,requireId,[useStrictNonDuckType])',function(){
             it('should check instances',function(){
                 expect(util.instanceOf('string','String'),'"String"').to.be.ok;
                 expect(util.instanceOf(new String('string'),'String'),'new String').to.be.ok;
@@ -58,7 +58,19 @@ define([
 
 
                 var b = new Base();
-                expect(util.instanceOf(b,'smashball/Base','utils')).to.be.ok;
+                //"Implement" base interface
+                var mockBase = {
+                    getNameOfInstance: function(){},
+                    instanceOf: function(){},
+                    mixin:function(){},
+                    hasMixedin:function(){},
+                    assert : function(){}
+
+                }
+                expect(util.instanceOf(b,'smashball/Base'),'utils1').to.be.ok;
+                expect(util.instanceOf(b,'smashball/Base',true),'utils2').to.be.ok;
+                //expect(util.instanceOf(mockBase,'smashball/Base',false),'utils3').to.be.ok;
+                //expect(util.instanceOf(mockBase,'smashball/Base',true),'utils4').not.to.be.ok;
             });
         })
 

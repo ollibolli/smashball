@@ -65,19 +65,31 @@ define(['smashball/Base','chai'],function(Base,chai){
 
             });
         });
-        describe('Super([arg..])',function(){
+        describe('_super_',function(){
             it('it call the prototyped (parent) constructor function as this',function(){
                 function Parent(){
+                    Parent._super_.constructor.call(this);
                     this.name = 'name'
                 }
                 Parent.Extend(Base);
+
                 function Child(){
-                    Base.prototype.constructor.call(this);
+                    Child._super_.constructor.call(this);
                 }
                 Child.Extend(Parent);
+
                 var child = new Child();
                 expect(child.name).to.equal('name');
 
+            });
+        });
+        describe('Base.toString()',function(){
+            it('should pritty print object eg [object Base]',function(){
+                var b = new Base();
+                function Test(){};
+                Test.Extend(Base);
+                expect('[object Base]').to.equal(b.toString());
+                expect('[object Test]').to.equal((new Test()).toString());
             });
         });
         describe.skip('mixin(object)',function(){

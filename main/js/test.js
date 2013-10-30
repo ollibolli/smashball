@@ -10,9 +10,11 @@ require([
     'smashball/entities/opponent',
     'smashball/entities/board',
     'smashball/entities/Ball',
-    'utils/Vector'
+    'utils/Vector',
+    'smashball/comp/FnMoveDecorator',
+    'smashball/comp/Move'
 
-], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable, player, opponent, board, Ball, Vendor) {
+], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable, player, opponent, board, Ball, Vector, FnMoveDecorator, Move) {
     var gameloop,
         eventBus,
         venue,
@@ -25,18 +27,42 @@ require([
         }
     });
 
-    venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 700, 500));
+    var venue2 = new Venue(Graphic.factory('canvas2d', document.getElementById('venue2'), 400, 400));
+    var ctx = venue2.getGraphic().context;
+    var move = new Move(new Vector(0,0));
+    move = new FnMoveDecorator(move,new Vector(200,200),-0.01);
+    window.move = move;
+    for(var j = 0;j < 400 ; j++){
+        for(var i = 0;i < 400 ; i++){
+            //if(j%1 == 0 && i%5 == 0){
+                var r = FnMoveDecorator.deltaVector(new Vector(j,i),new Vector(200,200),0.011),
+                    x = r.length()*60+60;
+                x = Math.floor(x);
+                ctx.fillStyle = 'rgba('+x+','+x+','+x+',127)';
+                ctx.fillRect( i, j, 5, 5 );
+            //}
+        }
+    }
 
+
+
+    document.getElementById('venue').backgroundImage = image;
+    var venue = new Venue(Graphic.factory('canvas2d', document.getElementById('venue'), 400, 400));
+
+    var image = new Image();
+    image.src = venue2.getGraphic().canvas.toDataURL("image/png");//.replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+    venue.getGraphic().backgroundImage = image;
     //move to a scene//
     var ball1 = new Entity('ball1');
     var render = new Rendable();
     ball1.addComponent(render);
     venue.addEntity(player);
     venue.addToStage(player);
-    venue.addEntity(opponent);
-    venue.addToStage(opponent);
-    venue.addEntity(board);
-    venue.addToStage(board);
+//    venue.addEntity(opponent);
+//    venue.addToStage(opponent);
+//    venue.addEntity(board);
+//    venue.addToStage(board);
 
     //move to game logic
     var ballIndex= 0;
