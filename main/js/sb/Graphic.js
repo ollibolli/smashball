@@ -1,4 +1,5 @@
-define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
+define(['utils/_'   ,'sb/Base'],
+function(_          ,Base){
     Graphic.Extend(Base);
 
     function Graphic(){
@@ -18,7 +19,7 @@ define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
      * @param height
      * @param depth
      */
-    Graphic.factory = function(string,element,width,height,depth,callback){
+    Graphic.factory = function(string,element,width,height,depth){
         _.assert(Graphic.factory[string]);
         var graphic = Graphic.factory[string](element,width,height,depth);
         graphic.graphicType = string;
@@ -34,6 +35,7 @@ define(['utils/_','smashball/Base', 'utils/raphael'],function(_, Base, raphael){
     Graphic.factory.canvas2d = function canvas2d(element,width,height){
         var graphic = new Graphic();
         graphic.canvas = document.createElement("canvas");
+        graphic.canvas.style.border = "1px solid #000000"
         graphic.context = graphic.canvas.getContext("2d");
         graphic.canvas.width = graphic.width = width;
         graphic.canvas.height = graphic.height = height;

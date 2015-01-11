@@ -1,9 +1,9 @@
 define([
     'sinon',
     'chai',
-    'smashball/comp/Pos',
+    'sb/comp/Pos',
     'utils/Vector',
-    'smashball/Entity'
+    'sb/Entity'
 ],function(sinon,chai,Pos,Vector,Entity){
     'use strict';
     

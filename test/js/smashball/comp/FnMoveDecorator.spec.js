@@ -1,12 +1,12 @@
 define([
     'sinon',
     'chai',
-    'smashball/comp/FnMoveDecorator',
-    'smashball/comp/Move',
+    'sb/comp/FnMoveDecorator',
+    'sb/comp/Move',
     'test/js/testUtils',
     'utils/Vector',
-    'smashball/Entity',
-    'smashball',
+    'sb/Entity',
+    'sb'
 ],function(sinon, chai, FnMoveDecorator, Move, testUtils, Vector, Entity, smashball){
     'use strict';
 

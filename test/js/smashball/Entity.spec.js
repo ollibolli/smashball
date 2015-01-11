@@ -1,8 +1,8 @@
-define(['smashball/Entity',
+define(['sb/Entity',
     'chai',
     'sinon',
     'utils/_Pubsub',
-    'smashball/comp/Component',
+    'sb/comp/Component',
     'utils/util'
 ],function(
     Entity,
@@ -39,7 +39,7 @@ define(['smashball/Entity',
 
         });
         describe('addComponent(component)',function(){
-            it('shall take first parameter of type [smashball/comp/Component]', function(){
+            it('shall take first parameter of type [sb/comp/Component]', function(){
 
                 expect(function(){
                     var entity = new Entity('test');
@@ -75,7 +75,7 @@ define(['smashball/Entity',
         });
 
         describe('removeComponent(component)',function(){
-            it('shall take a [component] as first parameter of type smashball/Component',function(){
+            it('shall take a [component] as first parameter of type sb/Component',function(){
                 expect(function(){
                     var entity= new Entity('test');
                     var component = new Component();
@@ -145,7 +145,7 @@ define(['smashball/Entity',
             });
         });
 //        describe.skip ('setVenue(venue)',function(){
-//            it('take a [smashball/Graphic] as first parameter',function(){
+//            it('take a [sb/Graphic] as first parameter',function(){
 //
 //            });
 //        });

@@ -1,5 +1,5 @@
 define([
-    'smashball/Base'
+    'sb/Base'
 ],function(Base){
     'use strict';
     Vector.Extend(Base);
@@ -30,9 +30,7 @@ define([
     };
 
     Vector.prototype.multiply = function(s) {
-      this.x *= s;
-      this.y *= s;
-      return this;
+      return new Vector(this.x * s, this.y * s);
     };
 
     Vector.prototype.tx = function(v) {
@@ -47,5 +45,35 @@ define([
         return this;
     };
 
+
+    Object.defineProperties(Vector.prototype, {
+        x: {
+            get: function(){
+                return this._x;
+            },
+            set: function(x){
+                if (!isNaN(x) && (x instanceof Number || typeof(x) == 'number')){
+                    this._x = x;
+                } else {
+                    throw new TypeError('Vector : X is not a valid number');
+                }
+            }
+        },
+        y: {
+            get: function(){
+                return this._y;
+            },
+            set: function(y){
+                if (!isNaN(y) && (y instanceof Number || typeof(y) == 'number' && y !== NaN)){
+                    this._y = y;
+                } else {
+                    throw new TypeError('Vector : X is not a valid number');
+                }
+            }
+        }
+
+    })
+
     return Vector;
+
 });

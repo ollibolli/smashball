@@ -1,14 +1,14 @@
-define(['utils/_','smashball/Base'],function(_, Base){
+define(['utils/_','sb/Base'],function(_, Base){
     'use strict';
     Venue.Extend(Base);
 
     /**
      * Define the enviromental places for the entities
-     * @param graphic [smashball/Graphic]
+     * @param graphic [sb/Graphic]
      */
-    function Venue(graphic){
+    function Venue(graphic, eventHandler){
         Base.prototype.constructor.call(this);
-        _.assertParam(graphic,'smashball/Graphic');
+        _.assertParam(graphic,'sb/Graphic');
         this._entityPool = {};
         this._graphic = graphic;
         this._onStage = {};
@@ -16,21 +16,20 @@ define(['utils/_','smashball/Base'],function(_, Base){
 
     /**
      * Add entity to the Venue
-     * @param entity [smashball/Entity]
+     * @param entity [sb/Entity]
      * @return id [Number]
      */
     Venue.prototype.addEntity = function(entity){
-        _.assertParam(entity, 'smashball/Entity');
+        _.assertParam(entity, 'sb/Entity');
         this._entityPool[entity._id] = entity;
     };
 
     /**
      * Remove entity from the Venue
-     * @param entity [smashball/Entity]
+     * @param entity [sb/Entity]
      * @return id [Number]
      */
     Venue.prototype.removeEntity = function(entity){
-        entity.removeComponentsSubscriptions();
         if (this.isOnStage(entity)){
             this.removeFromStage(entity);
         }
@@ -47,20 +46,20 @@ define(['utils/_','smashball/Base'],function(_, Base){
 
     /**
      *
-     * @param entity
+     * @param {sb/Entity} entity
      */
     Venue.prototype.addToStage = function(entity){
-        _.assertParam(entity, 'smashball/Entity');
-        entity.componentsSubscriptions();
+        _.assertParam(entity, 'sb/Entity');
+        entity.activateSubs();
         this._onStage[entity._id] = entity;
     };
 
     Venue.prototype.isOnStage = function(entity){
         return _.contains(this._onStage,entity);
-    }
+    };
 
     Venue.prototype.removeFromStage = function(entity){
-        entity.removeComponentsSubscriptions();
+        entity.deactivateSubs();
     };
 
     Venue.prototype.getEntitiesByName = function(name){
@@ -68,7 +67,14 @@ define(['utils/_','smashball/Base'],function(_, Base){
     };
 
     Venue.prototype.getEntitiesByComponent = function(Component){
-        return null;
+        var entities = [];
+        for (var i in this._entityPool){
+            var item = this._entityPool[i];
+            if (item.getComponents()[Component]){
+                entities.push(item);
+            }
+        }
+        return entities;
     };
 
     Venue.prototype.getEntityById = function(id){
@@ -86,6 +92,9 @@ define(['utils/_','smashball/Base'],function(_, Base){
     };
 
     Venue.prototype.initScene = function(){
+        if (!this._scene){
+            throw new Error('Venue.initScene not possible due to missing scene');
+        }
         this._scene.init(this);
     };
 

@@ -1,6 +1,6 @@
 define([
-    'smashball/Entity',
-    'smashball/comp/Render'
+    'sb/Entity',
+    'sb/comp/Render'
 ],function(Entity,Render){
     'use strict';
 
@@ -8,8 +8,8 @@ define([
 
     board.addComponent(new Render(function(type, graphic){
         graphic.context.beginPath();
-        graphic.context.rect(0, 0, 400, 400);
-        graphic.context.fillStyle = "#eee";
+        graphic.context.arc(200,200,15,0,2*Math.PI,false);
+        graphic.context.fillStyle = "#000";
         graphic.context.fill();
     }));
 

@@ -1,10 +1,10 @@
 define([
     'sinon',
     'chai',
-    'smashball/comp/MoveDecorator',
-    'smashball/Entity',
+    'sb/comp/MoveDecorator',
+    'sb/Entity',
     'utils/Vector',
-    'smashball/comp/Move',
+    'sb/comp/Move',
     'test/js/testUtils',
     'utils/_'
 ],function(sinon, chai, MoveDecorator, Entity, Vector, Move ,utils, _){

@@ -3,7 +3,7 @@
  * to play the scene.
  */
 
-define(['smashball/Base'],function(Base){
+define(['sb/Base'],function(Base){
 
     Scene.Extend(Base);
 
@@ -16,7 +16,7 @@ define(['smashball/Base'],function(Base){
      * @param venue
      */
     Scene.prototype.load = function(venue){
-        throw 'Override this [smashball/Scene.load]' ;
+        throw new Error('Override this [sb/Scene.load]') ;
     }
 
     return Scene

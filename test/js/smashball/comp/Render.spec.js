@@ -2,10 +2,10 @@
 define([
     'sinon',
     'chai',
-    'smashball/comp/Render',
-    'smashball/Entity',
-    'smashball',
-    'smashball/Graphic'
+    'sb/comp/Render',
+    'sb/Entity',
+    'sb',
+    'sb/Graphic'
 ],function(sinon, chai, Render, Entity, smashball, Graphic){
     'use strict';
     var eventBus = smashball.eventBus;

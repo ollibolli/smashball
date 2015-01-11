@@ -1,17 +1,18 @@
 define([
     'utils/_',
-    'smashball/comp/Move',
+    'sb/comp/Move',
     'utils/Vector'
 
 ],function(_, Move, Vector){
     'use strict';
 
     function FrictionMoveDecorator(move,friction){
-        var getVelocity = move.getVelocity;
-        move.getVelocity = function newVelocity(){
-            return getVelocity().multiply(friction);
-        };
 
+        var moveOrg = move.move;
+        move.move = function newMove(){
+            move.setVelocity(move.getVelocity().multiply(friction));
+            moveOrg.call(move)
+        };
         return move;
     };
 

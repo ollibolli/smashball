@@ -2,7 +2,7 @@
  * Object father off all
  */
 
-define(['utils/_'],function(_){
+define(['utils/_'],function sbBase(_){
     'use strict';
     function Base(){};
 

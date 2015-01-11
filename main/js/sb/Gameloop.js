@@ -3,13 +3,13 @@
 
 define([
     'smashball',
-    'smashball/Base',
+    'sb/Base',
     'utils/_'
 ],function(smashball, Base, _){
 
     var eventBus = smashball.eventBus;
 
-    function Gameloop(){
+    function GameLoop(){
         Base.prototype.constructor.call(this);
         this._fps = 60;
         this._running = false;
@@ -36,25 +36,25 @@ define([
             };
     };
 
-    Gameloop.Extend(Base);
+    GameLoop.Extend(Base);
 
-    Gameloop.prototype.setFrameRate = function setFrameRate(rate){
+    GameLoop.prototype.setFrameRate = function setFrameRate(rate){
         this._fps =  rate;
         this._skipTicks = 1000 / this._fps;
     };
 
-    Gameloop.prototype.getFrameRate = function getFrameRate(){
+    GameLoop.prototype.getFrameRate = function getFrameRate(){
         return this._fps;
     };
 
-    Gameloop.prototype.start = function start(){
+    GameLoop.prototype.start = function start(){
         var self = this;
         self._startTime = (new Date).getTime();
         self._running = true;
         self._loops = 0;
 
 
-        function onframe(){
+        function onFrame(){
             while ((new Date).getTime() > self._startTime) {
                 eventBus.publish('gameloop/gameTick');
                 self._startTime += self._skipTicks;
@@ -64,27 +64,27 @@ define([
             if (self._running){
                 self.getVenue().getGraphic().clear();
                 eventBus.publishSync('gameloop/render', self.getVenue().getGraphic());
-                onframe._id = self._requestAnimationFrame.call(window, onframe);
+                onFrame._id = self._requestAnimationFrame.call(window, onFrame);
             } else {
-                self._cancelRequestAnimationFrame.call(window,onframe._id);
+                self._cancelRequestAnimationFrame.call(window,onFrame._id);
             }
         };
-        self._onFrame = onframe;
-        onframe();
+        self._onFrame = onFrame;
+        onFrame();
     };
 
-    Gameloop.prototype.stop = function stop(){
+    GameLoop.prototype.stop = function stop(){
         this._running = false;
-    }
+    };
 
-    Gameloop.prototype.setVenue = function(venue) {
-        _.assertParam(venue,'smashball/Venue');
+    GameLoop.prototype.setVenue = function(venue) {
+        _.assertParam(venue,'sb/Venue');
         this._venue = venue;
-    }
-    Gameloop.prototype.getVenue = function() {
+    };
+    GameLoop.prototype.getVenue = function() {
         if (!this._venue) throw new Error('Graphic on Gameloop not set');
         return this._venue
-    }
+    };
 
-    return Gameloop;
+    return GameLoop;
 });

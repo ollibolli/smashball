@@ -1,4 +1,4 @@
-define(['smashball/Base','chai'],function(Base,chai){
+define(['sb/Base','chai'],function(Base,chai){
     var expect = chai.expect;
     var assert = chai.assert;
 
@@ -11,7 +11,7 @@ define(['smashball/Base','chai'],function(Base,chai){
                 expect(new Child()).to.be.an.instanceof(Parent);
 
             });
-            
+
             it('shall add obj properties to prototype of caller ',function(){
                 function Parent(){}
                 Parent.prototype.fn = function (){
@@ -94,7 +94,7 @@ define(['smashball/Base','chai'],function(Base,chai){
         });
         describe.skip('mixin(object)',function(){
             it('Included tests this',function(){
-                
+
             });
         });
         describe.skip('hasMixedin(object)',function(){
@@ -106,9 +106,9 @@ define(['smashball/Base','chai'],function(Base,chai){
             it('return true if moduleId exists and instanceof is true',function(){
                 var b = new Base();
                 var c = new Base();
-                expect(b.instanceOf('smashball/Base')).to.be.ok;
+                expect(b.instanceOf('sb/Base')).to.be.ok;
                 expect(b.instanceOf('Error')).to.not.be.ok;
-                expect(c.instanceOf( b,'smashball/Base')).to.be.ok;
+                expect(c.instanceOf( b,'sb/Base')).to.be.ok;
                 expect(c.instanceOf( b,'Error')).to.not.be.ok;
 
             });
@@ -116,14 +116,14 @@ define(['smashball/Base','chai'],function(Base,chai){
         describe('assert(expression,message)',function(){
             it('throws a AssertError with [message]',function(){
                 function fn(){
-                   var instance = new Base();
-                   instance.assert(false,'expect thrown');
+                    var instance = new Base();
+                    instance.assert(false,'expect thrown');
                 }
                 expect(fn).throws('expect thrown');
 
                 function fn2(){
-                   var instance = new Base();
-                   instance.assert(true,'expect thrown');
+                    var instance = new Base();
+                    instance.assert(true,'expect thrown');
                 }
                 expect(fn2).not.throws(Error);
             });

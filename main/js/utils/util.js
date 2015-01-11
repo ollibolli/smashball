@@ -1,5 +1,5 @@
-define(function(){
-    // 'use strict';
+define([],function utilsUtil(){
+    'use strict';
     var util = {};
 
     util.getNameOf = function getNameOf(object) {
@@ -68,6 +68,12 @@ define(function(){
             return true;
         } else {
             message = message || ' ';
+            if (message instanceof Error){
+                console.log(message.stack);
+            } else if (typeof(message)  === 'string'){
+                message = new Error(message);
+                console.log(message.stack);
+            }
             throw message;
         }
     };

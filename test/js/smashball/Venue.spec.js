@@ -1,9 +1,9 @@
 define([
     'sinon',
     'chai',
-    'smashball/Entity',
-    'smashball/Graphic',
-    'smashball/Venue',
+    'sb/Entity',
+    'sb/Graphic',
+    'sb/Venue',
     'utils/_'
 ],function(
     sinon,
@@ -19,7 +19,7 @@ define([
     describe('Venue',function(){
         describe('Venue(graphic)',function(){
 
-            it('should throw error if parameter is not instance of [smashball/Graphic]',function(){
+            it('should throw error if parameter is not instance of [sb/Graphic]',function(){
 
                 var graphic = new Graphic();
                 var v;
@@ -42,7 +42,7 @@ define([
         });
         describe('addEntity(entity) ,getEntity(entity)',function(){
 
-            it('should throw error if parameter is not instance of [smashball/Entity]', function(){
+            it('should throw error if parameter is not instance of [sb/Entity]', function(){
                 var v,
                     e;
                 e = new Entity('test-name');
@@ -87,7 +87,7 @@ define([
 
             });
         });
-        describe('addToStage([smashball/Entity])', function(){
+        describe('addToStage([sb/Entity])', function(){
             it('should activate the subscriptions for entity', function(){
                 var venue = new Venue(new Graphic());
                 var entity = new Entity('name');
@@ -109,7 +109,7 @@ define([
 
             });
         });
-        describe('removeFromStage([smashball/Entity])',function(){
+        describe('removeFromStage([sb/Entity])',function(){
             it('should remove the entitiy subscriptions by calling entity.removeSubscriptions',function(){
                 var venue = new Venue(new Graphic());
                 var entity = new Entity('name');

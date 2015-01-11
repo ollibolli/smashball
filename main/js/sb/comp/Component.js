@@ -1,13 +1,15 @@
 define([
-    'smashball/Base',
-    'utils/_'
-],function(Base,_){
+    'sb/Base',
+    'utils/_',
+    'smashball'
+],function(Base,_,smashball){
+    'use strict';
+
     Component.Extend(Base);
 
     function Component(){
-        Component._super_.constructor.call(this);
+        Base.call(this);
         this._entity = null;
-        this._dependencies = [];
         this._tokens = {};
     }
 
@@ -15,7 +17,8 @@ define([
      * @param entity
      */
     Component.prototype.setEntity = function(entity){
-        _.assertParam(entity,'smashball/Entity');
+        _.assertParam(entity,'sb/Entity');
+        this.hasEntityDependencies(entity);
         this._entity = entity || null;
     };
 
@@ -23,20 +26,8 @@ define([
         return this._entity;
     };
 
-    /**
-     * Override this function
-     * Here is a good place to add subscriptions
-     */
-    Component.prototype.addSubscriptions = function(){
-        throw 'Not implemented' + arguments.callee;
-    };
-
-    /**
-     * Override this function
-     * Here is a good place to remove subscriptions
-     */
-    Component.prototype.removeSubscriptions = function(){
-        throw 'removeSubscriptions not implemented '; //TODO check which component not implemented
+    Component.prototype.getEntityComponent = function(name){
+        return this._entity.getComponent(name);
     };
 
     /**
@@ -44,7 +35,7 @@ define([
      * @param entity
      */
     Component.prototype.hasEntityDependencies = function(entity){
-        _.assertParam(entity,'smashball/Entity');
+        _.assertParam(entity,'sb/Entity');
         for (var i in this._dependencies){
             var dependency = this._dependencies[i];
             var result = false;
@@ -61,7 +52,6 @@ define([
         }
         return true;
     };
-    
-    
+
     return Component;
 });

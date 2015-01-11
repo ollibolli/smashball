@@ -1,6 +1,6 @@
 define([
-    'smashball/Entity',
-    'smashball/comp/Render'
+    'sb/Entity',
+    'sb/comp/Render'
 ],function(Entity,Render){
     'use strict';
 

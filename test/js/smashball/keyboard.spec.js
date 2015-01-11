@@ -1,4 +1,5 @@
-define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, chai, sinon, smashball) {
+'use strict';
+define(['sb/keyboard', 'chai','sinon','smashball'], function(keyboard, chai, sinon, smashball) {
     var eventBus = smashball.eventBus;
     var expect;
     expect = chai.expect;
@@ -16,6 +17,10 @@ define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, ch
                 expect(keyboard.isDown(34)).to.be.ok;
             });
             it ('should send a "keyboard/keydown" event',function(done){
+                var event;
+                event = {
+                    keyCode: keyboard.S
+                };
                 var spy = sinon.spy(function(){
                     expect(spy.called).to.be.ok;
                     done();
@@ -38,6 +43,11 @@ define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, ch
                 expect(keyboard.isDown(83)).to.not.be.ok;
             });
             it ('should send a "keyboard/keyup" event',function(done){
+                var event;
+                event = {
+                    keyCode: keyboard.UP
+                };
+
                 var spy = sinon.spy(function(){
                     expect(spy.called).to.be.ok;
                     done();
@@ -85,7 +95,7 @@ define(['smashball/keyboard', 'chai','sinon','smashball'], function(keyboard, ch
 
         });
 
-        simulateKeyEvent = function(character) {
+        function simulateKeyEvent(character) {
             var canceled, evt;
             evt = document.createEvent("KeyboardEvent");
             evt.initKeyboardEvent("keyup", true, true, window, 0, 0, 0, 0, 0, character.charCodeAt(0));

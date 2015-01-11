@@ -1,13 +1,13 @@
 define([
     'utils/_',
-    'smashball/comp/Move',
-    'smashball/Base'
+    'sb/comp/Move',
+    'sb/Base'
 ],function(_, Move, Base){
     'use strict';
     MoveDecorator.Extend(Move);
 
     function MoveDecorator(move){
-        _.assertParam(move,'smashball/comp/Move',this);
+        _.assertParam(move,'sb/comp/Move',this);
         this._subject = move;
     };
 

@@ -1,18 +1,18 @@
 require([
-    'smashball/Entity',
-    'smashball/Gameloop',
+    'sb/Entity',
+    'sb/Gameloop',
     'smashball',
-    'smashball/keyboard',
-    'smashball/Venue',
-    'smashball/Graphic',
-    'smashball/comp/Render',
-    'smashball/entities/player',
-    'smashball/entities/opponent',
-    'smashball/entities/board',
-    'smashball/entities/Ball',
+    'sb/keyboard',
+    'sb/Venue',
+    'sb/Graphic',
+    'sb/comp/Render',
+    'sb/entities/player',
+    'sb/entities/opponent',
+    'sb/entities/board',
+    'sb/entities/Ball',
     'utils/Vector',
-    'smashball/comp/FnMoveDecorator',
-    'smashball/comp/Move'
+    'sb/comp/FnMoveDecorator',
+    'sb/comp/Move'
 
 ], function(Entity, Gameloop, smashball, keyboard, Venue, Graphic, Rendable, player, opponent, board, Ball, Vector, FnMoveDecorator, Move) {
     var gameloop,

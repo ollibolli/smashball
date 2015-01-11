@@ -1,7 +1,7 @@
 define([
     'sinon',
     'chai',
-    'smashball/Scene'
+    'sb/Scene'
 ],function(sinon,chai,Scene){
     'use strict';
 

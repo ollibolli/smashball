@@ -2,7 +2,7 @@ define([
     'sinon',
     'chai',
     'utils/util',
-    'smashball/Base'
+    'sb/Base'
 ],function(sinon, chai, util, Base){
     'use strict';
 
@@ -10,7 +10,7 @@ define([
     var assert = chai.assert;
 
     describe('util',function(){
-        describe('getNameOf(fn)',function(){
+        describe.only('getNameOf(fn)',function(){
             it ('should return the name of the function if function',function(){
                 var fn = function Test(){}
                 expect(util.getNameOf(fn)).to.equals('Test');
@@ -67,10 +67,10 @@ define([
                     assert : function(){}
 
                 }
-                expect(util.instanceOf(b,'smashball/Base'),'utils1').to.be.ok;
-                expect(util.instanceOf(b,'smashball/Base',true),'utils2').to.be.ok;
-                //expect(util.instanceOf(mockBase,'smashball/Base',false),'utils3').to.be.ok;
-                //expect(util.instanceOf(mockBase,'smashball/Base',true),'utils4').not.to.be.ok;
+                expect(util.instanceOf(b,'sb/Base'),'utils1').to.be.ok;
+                expect(util.instanceOf(b,'sb/Base',true),'utils2').to.be.ok;
+                //expect(util.instanceOf(mockBase,'sb/Base',false),'utils3').to.be.ok;
+                //expect(util.instanceOf(mockBase,'sb/Base',true),'utils4').not.to.be.ok;
             });
         })
 

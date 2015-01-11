@@ -2,18 +2,26 @@
   "name": "smashball",
   "version": "0.0.1",
   "description": "Smashball is a js game for two person. Collide balls and take scores",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "main": "node/server.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "express": "~3.3.5"
+    "express": "~3.3.5",
+    "sinon": "^1.10.3",
+    "lodash": "^2.4.1",
+    "amdefine": "^0.1.0",
+    "requirejs": "^2.1.15",
+    "mocha": "^1.21.4",
+    "curl-amd": "^0.8.10"
   },
   "devDependencies": {
-     "testister": "~0.0.3"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "testister": "~0.0.3",
+    "chai": "",
+    "mocha": ""
   },
   "repository": {
     "type": "git",

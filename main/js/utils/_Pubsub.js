@@ -33,15 +33,17 @@ https://github.com/mroderick/PubSubJS
 	 */
 	function throwException( ex ){
 		return function reThrowException(){
-			throw ex;
+			console.log(ex.stack);
+            throw ex;
 		};
 	}
 
 	function callSubscriberWithDelayedExceptions( subscriber, message, data ){
 		try {
-			subscriber( message, data );
+            subscriber( message, data );
 		} catch( ex ){
-			setTimeout( throwException( ex ), 0);
+			console.log(ex.message, ex.stack);
+            throw ex;
 		}
 	}
 
@@ -142,12 +144,10 @@ https://github.com/mroderick/PubSubJS
 		if ( !messages.hasOwnProperty( message ) ){
 			messages[message] = [];
 		}
-
 		// forcing token as String, to allow for future expansions without breaking usage
 		// and allow for easy use as key names for the 'messages' object
 		var token = String(++lastUid);
 		messages[message].push( { token : token, func : func } );
-
 		// return token for unsubscribing
 		return token;
 	};

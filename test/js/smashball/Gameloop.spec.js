@@ -1,10 +1,10 @@
 define([
-    'smashball/Gameloop',
+    'sb/Gameloop',
     'chai',
     'smashball',
     'sinon',
-    'smashball/Graphic',
-    'smashball/Venue'
+    'sb/Graphic',
+    'sb/Venue'
 ],function(Gameloop, chai, smashball, sinon, Graphic, Venue){
     var expect = chai.expect;
     var assert = chai.assert;

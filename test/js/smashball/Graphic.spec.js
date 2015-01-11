@@ -1,5 +1,5 @@
-define(['sinon','chai','smashball/Graphic']
-,function(sinon, chai, Graphic){
+define( ['sinon','chai','sb/Graphic','../../test/mock/dom.js']
+,function(sinon,  chai,     Graphic){
     var expect = chai.expect;
     var assert = chai.assert;
 
@@ -7,7 +7,7 @@ define(['sinon','chai','smashball/Graphic']
 
         var body = document.getElementsByTagName('body')[0];
 
-        describe('Graphic.factory(type,elem,width,height,depth)',function(done){
+        describe('Graphic.factory(type,elem,width,height,depth)',function(){
             //register a factory method
             Graphic.factory.test = function (element,width,height){
                 var graphic = new Graphic();
@@ -19,7 +19,8 @@ define(['sinon','chai','smashball/Graphic']
                 element.appendChild(graphic.div);
 
                 return graphic;
-            }
+
+            };
 
             it.skip('Register a custom graphic factory method',function(){
                  expect(Graphic.factory.test).to.be.a(Function);
@@ -34,7 +35,7 @@ define(['sinon','chai','smashball/Graphic']
             });
         });
         describe('Graphic.factory.canvas2d(element,width,height)',function(){
-            it('shall return a [smashball/Graphic] object', function(){
+            it('shall return a [sb/Graphic] object', function(){
                 var graphic = Graphic.factory('canvas2d', document.getElementsByTagName('body')[0],500,534);
                 expect(graphic.canvas instanceof HTMLCanvasElement).to.be.ok;
                 expect(graphic.context instanceof CanvasRenderingContext2D).to.be.ok;
