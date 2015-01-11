@@ -17,11 +17,23 @@ define([
     };
 
     Collision.prototype.collide = function(collisionComponent) {
+        var selfPos = this.getEntityComponent('Pos').getPos();
+
+        var objPos = collisionComponent.getEntityComponent('Pos').getPos();
+
+        var deltaTangental, mT, v1, v2, elacticy, sumOfMass,
+            deltaVector = new Vector(selfPos.x - objPos.x, selfPos.y - objPos.y),
+            sumOfRadie = this.radius + collisionComponent.radius, // sum of radii
+            deltaVLength = deltaVector.length(); // pre-normalized magnitude
+
+        if (deltaVLength > sumOfRadie) {
+            return; // no collision
+        }
+
         var self = {};
         self.mass = this.mass;
         self.radius = this.radius;
         self.elasticity = this.elasticity;
-        var selfPos = this.getEntityComponent('Pos').getPos();
         self.position = new Vector(selfPos.x, selfPos.y );
         var selfVel = this.getEntityComponent('Move').getVelocity();
         self.velocity = new Vector(selfVel.x, selfVel.y );
@@ -30,19 +42,10 @@ define([
         obj.mass = collisionComponent.mass;
         obj.radius = collisionComponent.radius;
         obj.elasticity = collisionComponent.elasticity;
-        var objPos = collisionComponent.getEntityComponent('Pos').getPos();
         obj.position = new Vector(objPos.x, objPos.y );
         var objVel = collisionComponent.getEntityComponent('Move').getVelocity();
         obj.velocity = new Vector(objVel.x, objVel.y );
 
-        var deltaTangental, mT, v1, v2, elacticy, sumOfMass,
-            deltaVector = new Vector(self.position.x - obj.position.x, self.position.y - obj.position.y),
-            sumOfRadie = self.radius + obj.radius, // sum of radii
-            deltaVLength = deltaVector.length(); // pre-normalized magnitude
-
-        if (deltaVLength > sumOfRadie) {
-            return; // no collision
-        }
 
         // sum the masses, normalize the collision vector and get its tangential
         sumOfMass = self.mass + obj.mass;
@@ -81,10 +84,9 @@ define([
         obj.velocity = deltaTangental.multiply(obj.velocity.dot(deltaTangental));
         obj.velocity.tx(deltaVector.multiply(-(elacticy * self.mass * (v1 - v2) + obj.mass * v2 + self.mass * v1) / sumOfMass));
 
+
         collisionComponent.getEntityComponent('Move').setVelocity(obj.velocity);
         this.getEntityComponent('Move').setVelocity(self.velocity);
-        console.log('[Collision.collide] this', this.getEntity().getId());
-        console.log('[Collision.collide] obj', collisionComponent.getEntity().getId());
     };
 
     return Collision;
